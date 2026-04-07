@@ -25,6 +25,43 @@ nav a:hover {
 
 
 <!-- footer -->
-#footercopy{
+.footer {
+    background-color: #222;
+    color: white;
+    padding: 20px;
+}
 
+/* Top section */
+.footer-top {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+/* Each column */
+.footer-section {
+    width: 250px;
+    margin: 10px;
+}
+
+.footer-section h3 {
+    border-bottom: 1px solid white;
+    padding-bottom: 5px;
+}
+
+.footer-section a {
+    color: white;
+    text-decoration: none;
+}
+
+.footer-section a:hover {
+    color: yellow;
+}
+
+/* Bottom */
+.footer-bottom {
+    text-align: center;
+    margin-top: 20px;
+    border-top: 1px solid white;
+    padding-top: 10px;
 }
