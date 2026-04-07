@@ -1,8 +1,44 @@
-
 <div th:fragment="footer">
 
+    <footer class="footer">
 
+        <!-- TOP SECTION -->
+        <div class="footer-top">
 
-    <p id="footercopy">© 2026 Faculty of Technology</p>
+            <!-- Map -->
+            <div class="footer-section">
+                <h3>Location</h3>
+                <iframe
+                        src="https://www.google.com/maps?q=Faculty%20of%20Technology%20Sri%20Lanka&output=embed"
+                        width="250" height="150" style="border:0;">
+                </iframe>
+            </div>
+
+            <!-- Bank Details -->
+            <div class="footer-section">
+                <h3>Payment Details</h3>
+                <p>Bank: People's Bank</p>
+                <p>Account Name: Faculty of Technology</p>
+                <p>Account No: 1234567890</p>
+                <p>Branch: Colombo</p>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="/">Home</a><br>
+                <a href="/booking">Book Venue</a><br>
+                <a href="/my-bookings">My Bookings</a><br>
+                <a href="/login">Login</a>
+            </div>
+
+        </div>
+
+        <!-- BOTTOM SECTION -->
+        <div class="footer-bottom">
+            <p>© 2026 Faculty of Technology</p>
+        </div>
+
+    </footer>
 
 </div>
