@@ -80,14 +80,18 @@
 /* Top section */
 .footer-top {
     display: flex;
+    color: white;
+    font-weight: bold;
     justify-content: space-around;
     flex-wrap: wrap;
+    background-color: #0f7f7f;
 }
 
 /* Each column */
 .footer-section {
     width: 250px;
     margin: 10px;
+
 }
 
 .footer-section h3 {
