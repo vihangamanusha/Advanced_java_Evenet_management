@@ -176,6 +176,7 @@
 .upcoming-events {
     padding: 40px;
     text-align: center;
+    background-color: #e2f8f8;
 }
 
 .event-list {
@@ -211,6 +212,7 @@
 /* Latest Event */
 .latest-event {
     padding: 40px;
+
 }
 
 .latest-container {
