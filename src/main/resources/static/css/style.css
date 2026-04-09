@@ -83,6 +83,8 @@
     color: white;
     font-weight: bold;
     justify-content: space-around;
+    gap: 20px;                       /* control spacing */
+    padding: 20px;
     flex-wrap: wrap;
     background-color: #0f7f7f;
 }
@@ -107,12 +109,16 @@
 .footer-section a:hover {
     color: yellow;
 }
-
+.footer-section p {
+    margin: 7px 0; /*vertical gap*/
+}
 /* Bottom */
 .footer-bottom {
     text-align: center;
-    margin-top: 20px;
+    color: white;
+    /*margin-top: 0px;*/
     border-top: 1px solid white;
-    padding-top: 10px;
-    background-color:saddlebrown;
+    align-items: center;
+    background-color: #064545;
+    height: 55px;
 }
