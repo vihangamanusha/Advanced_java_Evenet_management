@@ -11,9 +11,9 @@
 .main-header {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    /*justify-content: space-between;*/
     background-color: #0f7f7f;
-    padding: 15px 20px;
+    padding: 15px 18px;
     color: white;
 }
 
@@ -25,11 +25,15 @@
 .logo-right img {
     width: 80px;
     height: auto;
-}
 
+}
+.logo-right {
+    margin-left: auto;
+}
 /* Title */
 .title {
-    text-align: center;
+    text-align: left;
+    border-left: 20px;
 }
 
 .title h1 {
