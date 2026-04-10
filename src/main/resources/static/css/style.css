@@ -264,10 +264,11 @@
 /* Modal box */
 .modal-content {
     background-color: white;
+    opacity: 0.87;
     width: 350px;
     margin: 8% auto;
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 15px;
     text-align: center;
 }
 
@@ -281,15 +282,21 @@
 /* Inputs */
 .modal-content input {
     width: 90%;
-    padding: 10px;
     margin: 8px 0;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 9px;   /* 🔥 rounded */
+    outline: none;
+    font-size: 14px;
+    text-align: center;
+
 }
 
 /* Buttons */
 .modal-content button {
     width: 95%;
     padding: 10px;
-    background-color: #0f7f7f;
+    background-color: #03805d;
     color: white;
     border: none;
     margin-top: 10px;
@@ -300,3 +307,18 @@
     width: 45%;
     margin: 5px;
 }
+
+/* Logos inside modal */
+.modal-logos {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.modal-logos img {
+    width: 80px;   /* 🔥 control size */
+    height: auto;
+    opacity: 0.8;
+}
+
