@@ -29,8 +29,68 @@
         <a href="#">CALANDER</a>
         <a href="#">BOOKING</a>
         <a href="#">CONTACT US</a>
-        <a href="#">SIGN UP/LOGIN</a>
+        <a href="#" onclick="openLogin()">SIGN UP/LOGIN</a>
 
     </nav>
+    <!-- LOGIN MODAL -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeLogin()">&times;</span>
+
+            <h2>Login</h2>
+
+            <input type="text" placeholder="Username">
+            <input type="password" placeholder="Password">
+
+            <button>Login</button>
+
+            <p>
+                Don't have an account?
+                <a href="#" onclick="showSignup()">Sign Up</a>
+            </p>
+        </div>
+
+        <!-- SIGNUP MODAL -->
+        <div id="signupModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeSignup()">&times;</span>
+
+                <h2>Sign Up</h2>
+
+                <!-- User Type -->
+                <div class="user-type">
+                    <button onclick="showMember()">Member</button>
+                    <button onclick="showPublic()">Public</button>
+                </div>
+
+                <!-- MEMBER FORM -->
+                <div id="memberForm">
+                    <input type="text" placeholder="Registration Number">
+                    <input type="email" placeholder="Email">
+                    <input type="password" placeholder="Password">
+                    <input type="password" placeholder="Confirm Password">
+                    <button>Register</button>
+                </div>
+
+                <!-- PUBLIC FORM -->
+                <div id="publicForm" style="display:none;">
+                    <input type="text" placeholder="Phone Number">
+                    <input type="email" placeholder="Email">
+                    <input type="text" placeholder="Organization Reg No">
+                    <input type="password" placeholder="Password">
+                    <input type="password" placeholder="Confirm Password">
+                    <button>Register</button>
+                </div>
+
+                <p>
+                    Already have an account?
+                    <a href="#" onclick="showLogin()">Login</a>
+                </p>
+            </div>
+        </div>
+    </div>
 
 </div>
+
+
+
