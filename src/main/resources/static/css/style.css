@@ -187,7 +187,7 @@
 }
 
 .event-card {
-    background-color: #f5f5f5;
+    background-color: #fdfffd;
     border-radius: 10px;
     width: 260px;
     padding: 15px;
@@ -217,7 +217,7 @@
 }
 
 .latest-event h1{
-    text-align: center;
+    text-align: left;
 }
 .latest-container {
     display: flex;
