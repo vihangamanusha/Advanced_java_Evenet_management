@@ -212,9 +212,13 @@
 /* Latest Event */
 .latest-event {
     padding: 40px;
+    background-color: #d5efef;
 
 }
 
+.latest-event h1{
+    text-align: center;
+}
 .latest-container {
     display: flex;
     align-items: center;
