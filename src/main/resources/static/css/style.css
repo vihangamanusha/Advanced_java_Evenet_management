@@ -300,6 +300,7 @@
     color: white;
     border: none;
     margin-top: 10px;
+    cursor: pointer;
 }
 
 /* User type buttons */
