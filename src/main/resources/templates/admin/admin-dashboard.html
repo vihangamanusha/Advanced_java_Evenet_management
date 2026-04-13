@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<!-- Sidebar -->
+<div class="sidebar">
+
+    <h2>ADMIN</h2>
+
+    <a href="#">Dashboard</a>
+    <a href="#">Booking Requests</a>
+    <a href="#">Approved Events</a>
+    <a href="#">Manage Venues</a>
+    <a href="#">Users</a>
+    <a href="#">Calendar</a>
+    <a href="#">Logout</a>
+
+</div>
+
+<!-- Main Content -->
+<div class="main-content">
+
+    <h1>Dashboard</h1>
+
+    <!-- Cards -->
+    <div class="card-container">
+
+        <div class="card">
+            <h3>Total Requests</h3>
+            <p>25</p>
+        </div>
+
+        <div class="card">
+            <h3>Approved Events</h3>
+            <p>18</p>
+        </div>
+
+        <div class="card">
+            <h3>Pending Requests</h3>
+            <p>7</p>
+        </div>
+
+    </div>
+
+    <!-- Table -->
+    <h2>Recent Booking Requests</h2>
+
+    <table>
+        <tr>
+            <th>Event Name</th>
+            <th>Venue</th>
+            <th>Date</th>
+            <th>Status</th>
+        </tr>
+
+        <tr>
+            <td>AI Workshop</td>
+            <td>Auditorium</td>
+            <td>2026-05-10</td>
+            <td>Pending</td>
+        </tr>
+
+        <tr>
+            <td>Tech Talk</td>
+            <td>Playground</td>
+            <td>2026-05-15</td>
+            <td>Approved</td>
+        </tr>
+
+    </table>
+
+</div>
+
+</body>
+</html>
