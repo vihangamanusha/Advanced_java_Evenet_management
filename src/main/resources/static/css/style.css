@@ -323,3 +323,68 @@
     opacity: 0.8;
 }
 
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    width: 220px;
+    height: 100%;
+    background-color: #0f7f7f;
+    padding-top: 20px;
+}
+
+.sidebar h2 {
+    color: white;
+    text-align: center;
+}
+
+.sidebar a {
+    display: block;
+    color: white;
+    padding: 12px;
+    text-decoration: none;
+}
+
+.sidebar a:hover {
+    background-color: #064545;
+}
+
+/* Main content */
+.main-content {
+    margin-left: 220px;
+    padding: 20px;
+}
+
+/* Cards */
+.card-container {
+    display: flex;
+    gap: 20px;
+}
+
+.card {
+    background-color: #e2f8f8;
+    padding: 20px;
+    border-radius: 10px;
+    width: 200px;
+    text-align: center;
+}
+
+/* Table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table, th, td {
+    border: 1px solid #ccc;
+}
+
+th {
+    background-color: #0f7f7f;
+    color: white;
+}
+
+td, th {
+    padding: 10px;
+    text-align: center;
+}
