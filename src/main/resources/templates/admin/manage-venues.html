@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Manage Venues</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<div class="main-content">
+
+  <h1>Manage Venues</h1>
+
+  <!-- ADD VENUE FORM -->
+  <div class="form-box">
+    <h2>Add New Venue</h2>
+
+    <form action="/admin/venues/add" method="post">
+      <input type="text" name="name" placeholder="Venue Name" required>
+      <input type="number" name="capacity" placeholder="Capacity" required>
+      <input type="number" name="price" placeholder="Price per Hour" required>
+      <button type="submit">Add Venue</button>
+    </form>
+  </div>
+
+  <!-- VENUE TABLE -->
+  <h2>All Venues</h2>
+
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Capacity</th>
+      <th>Price</th>
+      <th>Actions</th>
+    </tr>
+
+    <tr th:each="venue : ${venues}">
+      <td th:text="${venue.id}"></td>
+      <td th:text="${venue.name}"></td>
+      <td th:text="${venue.capacity}"></td>
+      <td th:text="${venue.price}"></td>
+
+      <td>
+        <a th:href="@{'/admin/venues/delete/' + ${venue.id}}">Delete</a>
+      </td>
+    </tr>
+
+  </table>
+
+</div>
+
+</body>
+</html>

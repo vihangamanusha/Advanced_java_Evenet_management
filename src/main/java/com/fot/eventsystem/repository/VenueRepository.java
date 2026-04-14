@@ -1,4 +1,7 @@
 package com.fot.eventsystem.repository;
 
-public class VenueRepository {
+import com.fot.eventsystem.model.Venues;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface VenueRepository extends JpaRepository<Venues, Long> {
 }
