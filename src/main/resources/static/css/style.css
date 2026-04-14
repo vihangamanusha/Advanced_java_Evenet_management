@@ -335,13 +335,17 @@
 .sidebar h2 {
     color: white;
     text-align: center;
+    padding-top: 20px;
+    color: #cccccc;
 }
 
 .sidebar a {
     display: block;
     color: white;
-    padding: 12px;
+    padding-top: 12px;
     text-decoration: none;
+    text-align: center;
+    line-height: 35.6px;
 }
 
 .sidebar a:hover {
