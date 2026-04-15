@@ -1,4 +1,10 @@
 package com.fot.eventsystem.repository;
 
-public class UserRepository {
+import com.fot.eventsystem.model.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+//bridge between java and db
+public interface UserRepository extends JpaRepository<User, Integer> {
+
+    User findByEmailAndPassword(String email, String password);
 }
