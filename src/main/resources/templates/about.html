@@ -2,8 +2,6 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>About Us</title>
-
-    <!-- Main CSS -->
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
@@ -11,54 +9,44 @@
 <!-- Header -->
 <div th:replace="fragments/header :: header"></div>
 
-<!-- ABOUT SECTION -->
 <section class="about-section">
 
+    <!-- Top Image -->
     <div id="header">
         <img src="/images/about.png">
     </div>
-    <br>
+
     <h1>ABOUT EVENT MANAGEMENT SYSTEM</h1>
 
     <p class="intro">
         This Event Management System is developed for the Faculty of Technology,
-        University of Ruhuna. It allows internal and external users to easily
-        book venues, manage events, and track booking status online.
+        University of Ruhuna. It allows users to book venues and manage events easily.
     </p>
 
     <!-- PURPOSE -->
     <div class="about-box">
         <h2>OUR PURPOSE</h2>
         <p>
-            Our goal is to simplify the event booking process, reduce manual paperwork,
-            and provide a transparent system for managing venue reservations and approvals.
+            Our goal is to simplify event booking and provide a transparent system.
         </p>
     </div>
 
-    <!-- VENUES -->
+    <!-- ✅ DYNAMIC VENUES -->
     <div class="about-box">
-        <h2>AVAILABLE VENUES</h2>
+        <h2 style="color:#b67c03">AVAILABLE VENUES</h2>
 
         <div class="venue-list">
 
-            <div class="venue-card">
+            <div class="venue-card" th:each="venue : ${venues}">
+
                 <img src="/images/image1.png">
-                <h3>Auditorium</h3>
-            </div>
 
-            <div class="venue-card">
-                <img src="/images/image2.png">
-                <h3>Playground</h3>
-            </div>
+                <h3 th:text="${venue.name}"></h3>
 
-            <div class="venue-card">
-                <img src="/images/image3.png">
-                <h3>New Building</h3>
-            </div>
+                <p>Capacity: <span th:text="${venue.capacity}"></span></p>
 
-            <div class="venue-card">
-                <img src="/images/image1.png">
-                <h3>Lecture Halls</h3>
+                <p>Price: Rs. <span th:text="${venue.price}"></span></p>
+
             </div>
 
         </div>
@@ -73,12 +61,10 @@
         </ul>
     </div>
 
-
-
 </section>
 
 <!-- Footer -->
 <div th:replace="fragments/footer :: footer"></div>
 
 </body>
-</html>>
+</html>
