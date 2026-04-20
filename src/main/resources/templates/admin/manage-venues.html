@@ -5,8 +5,10 @@
   <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
+
 <!-- Sidebar -->
 <div class="sidebar">
+
   <div class="modal-logos">
     <img src="/images/logo2.png" alt="logo">
     <img src="/images/flogo.png" alt="logo">
@@ -17,7 +19,7 @@
   <a href="#">Dashboard</a>
   <a href="#">Booking Requests</a>
   <a href="#">Approved Events</a>
-  <a href="#">Manage Venues</a>
+  <a href="/admin/venues">Manage Venues</a> <!-- FIXED -->
   <a href="#">Manage Users</a>
   <a href="#">Latest News</a>
   <a href="#">Calendar</a>
@@ -25,43 +27,65 @@
 
 </div>
 
+<!-- MAIN -->
 <div class="main-content">
 
   <h1>Manage Venues</h1>
 
-  <!-- ADD VENUE FORM -->
+  <!-- ERROR / SUCCESS -->
+  <p style="color:red;" th:if="${error}" th:text="${error}"></p>
+  <p style="color:green;" th:if="${success}" th:text="${success}"></p>
+
+  <!-- ADD VENUE FORM (FIXED + IMAGE UPLOAD) -->
   <div class="form-box">
+
     <h2>Add New Venue</h2>
 
-    <form action="/admin/venues/add" method="post">
+    <form action="/admin/venues/save" method="post" enctype="multipart/form-data">
+
       <input type="text" name="name" placeholder="Venue Name" required>
       <input type="number" name="capacity" placeholder="Capacity" required>
       <input type="number" name="price" placeholder="Price per Hour" required>
-      <button type="submit">Add Venue</button>
+
+      <!-- IMAGE -->
+      <input type="file" name="imageFile" required>
+
+      <button type="submit">Save Venue</button>
+
     </form>
+
   </div>
 
   <!-- VENUE TABLE -->
   <h2>All Venues</h2>
 
-  <table>
+  <table border="1">
+
     <tr>
       <th>ID</th>
       <th>Name</th>
       <th>Capacity</th>
       <th>Price</th>
+      <th>Image</th>
       <th>Actions</th>
     </tr>
 
     <tr th:each="venue : ${venues}">
+
       <td th:text="${venue.id}"></td>
       <td th:text="${venue.name}"></td>
       <td th:text="${venue.capacity}"></td>
       <td th:text="${venue.price}"></td>
 
+      <!-- IMAGE DISPLAY -->
+      <td>
+        <img th:src="@{'/images/' + ${venue.imageName}}" width="100">
+      </td>
+
       <td>
         <a th:href="@{'/admin/venues/delete/' + ${venue.id}}">Delete</a>
       </td>
+
     </tr>
 
   </table>
