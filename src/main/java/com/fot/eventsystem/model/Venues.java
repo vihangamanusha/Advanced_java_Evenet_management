@@ -12,6 +12,7 @@ public class Venues {
     private String name;
     private int capacity;
     private double price;
+    private String imageName;
     private String image;
 
     public Long getId() {
@@ -52,5 +53,13 @@ public class Venues {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getImageName() {
+        return imageName;
+    }
+
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
     }
 }

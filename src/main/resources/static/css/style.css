@@ -439,10 +439,11 @@ td, th {
 .about-box {
     margin: 30px 0;
     padding-top: 5px;
+    padding-bottom: 20px;
 }
 
 .about-box h2{
-    color: #0f7f7f;
+    color: #045c5c;
 }
 
 /* Venue Grid */
@@ -482,4 +483,9 @@ td, th {
     width: 100%;     /* full width */
     height: 300px;   /* 🔥 change this value */
     object-fit: cover;
+}
+
+.venue-box{
+    background-color: #ededed;
+    padding-bottom: 20px;
 }

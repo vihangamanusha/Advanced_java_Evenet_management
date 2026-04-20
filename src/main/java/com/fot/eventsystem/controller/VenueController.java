@@ -25,33 +25,45 @@ public class VenueController {
         return "admin/manage-venues";
     }
 
-    // ✅ Save venue with image
     @PostMapping("/save")
-    public String saveVenue(
-            @RequestParam("name") String name,
-            @RequestParam("capacity") int capacity,
-            @RequestParam("price") double price,
-            @RequestParam("imageFile") MultipartFile file
-    ) throws IOException {
+    public String saveVenue(@RequestParam String name,
+                            @RequestParam int capacity,
+                            @RequestParam double price,
+                            @RequestParam MultipartFile imageFile) {
 
-        Venues venue = new Venues();
-        venue.setName(name);
-        venue.setCapacity(capacity);
-        venue.setPrice(price);
+        try {
 
-        // 🔥 Save image
-        String uploadDir = "src/main/resources/static/images/";
-        String fileName = System.currentTimeMillis() + "_" + file.getOriginalFilename();
+            Venues venue = new Venues();
+            venue.setName(name);
+            venue.setCapacity(capacity);
+            venue.setPrice(price);
 
-        file.transferTo(new File(uploadDir + fileName));
+            // ✅ STEP 2 HERE (SAVE IMAGE FILE)
+            if (!imageFile.isEmpty()) {
 
-        venue.setImage(fileName);
+                String originalName = imageFile.getOriginalFilename();
 
-        venueRepository.save(venue); // ✅ FIXED
+                String fileName = originalName.replace(" ", "_");
 
-        return "redirect:/admin/venues";
+                String uploadDir = System.getProperty("user.dir")
+                        + "/src/main/resources/static/images/";
+
+                File saveFile = new File(uploadDir + fileName);
+
+                imageFile.transferTo(saveFile);
+
+                venue.setImageName(fileName);
+            }
+
+            venueRepository.save(venue);
+
+            return "redirect:/admin/venues";
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "redirect:/admin/venues?error";
+        }
     }
-
     // ✅ Delete venue
     @GetMapping("/delete/{id}")
     public String deleteVenue(@PathVariable Long id) {

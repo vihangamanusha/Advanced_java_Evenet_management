@@ -32,14 +32,15 @@
     </div>
 
     <!-- ✅ DYNAMIC VENUES -->
+    <div class="venue-box">
     <div class="about-box">
-        <h2 style="color:#b67c03">AVAILABLE VENUES</h2>
+        <h2 style="color:#b60312">AVAILABLE VENUES</h2>
 
         <div class="venue-list">
 
             <div class="venue-card" th:each="venue : ${venues}">
 
-                <img src="/images/image1.png">
+                <img th:src="@{'/images/' + ${venue.imageName}}">
 
                 <h3 th:text="${venue.name}"></h3>
 
@@ -51,7 +52,7 @@
 
         </div>
     </div>
-
+    </div>
     <!-- USERS -->
     <div class="about-box">
         <h2>WHO CAN USE THIS SYSTEM</h2>
