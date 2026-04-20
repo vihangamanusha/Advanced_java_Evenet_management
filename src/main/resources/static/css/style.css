@@ -414,3 +414,60 @@ td, th {
     color: white;
     border: none;
 }
+
+/* ABOUT PAGE */
+.about-section {
+    padding: 40px;
+    background-color: #f4f9f9;
+    text-align: center;
+}
+
+.about-section h1 {
+    color: #0f7f7f;
+    margin-bottom: 20px;
+}
+
+.intro {
+    max-width: 800px;
+    margin: auto;
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+/* Boxes */
+.about-box {
+    margin: 30px 0;
+}
+
+/* Venue Grid */
+.venue-list {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.venue-card {
+    width: 200px;
+    background: white;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.venue-card img {
+    width: 100%;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* Lists */
+.about-box ul {
+    list-style: none;
+    padding: 0;
+}
+
+.about-box li {
+    padding: 8px;
+    font-size: 16px;
+}
