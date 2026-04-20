@@ -14,7 +14,7 @@ public class User {
     private String registerno;
     private String email;
     private String password;
-    private int phoneno;
+    private String phoneno;
     private String orgname;
 
     public int getId() {
@@ -57,11 +57,11 @@ public class User {
         this.password = password;
     }
 
-    public int getPhoneno() {
+    public String getPhoneno() {
         return phoneno;
     }
 
-    public void setPhoneno(int phoneno) {
+    public void setPhoneno(String phoneno) {
         this.phoneno = phoneno;
     }
 
@@ -72,4 +72,5 @@ public class User {
     public void setOrgname(String orgname) {
         this.orgname = orgname;
     }
+
 }

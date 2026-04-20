@@ -127,5 +127,9 @@
 <!-- Slideshow JS -->
 <script th:src="@{/js/slideshow.js}"></script>
 <script th:src="@{/js/login.js}"></script>
+
+<p style="color:red;" th:if="${error}" th:text="${error}"></p>
+<p style="color:green;" th:if="${success}" th:text="${success}"></p>
+
 </body>
 </html>
