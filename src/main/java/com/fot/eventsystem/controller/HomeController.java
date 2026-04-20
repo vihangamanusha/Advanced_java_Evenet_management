@@ -9,5 +9,10 @@ public class HomeController {
     public String home() {
         return "home"; // must match home.html
     }
+
+    @GetMapping("/about")
+    public String aboutPage() {
+        return "about";
+    }
 }
 

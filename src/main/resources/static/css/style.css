@@ -471,3 +471,9 @@ td, th {
     padding: 8px;
     font-size: 16px;
 }
+
+#header img{
+    width: 100%;     /* full width */
+    height: 300px;   /* 🔥 change this value */
+    object-fit: cover;
+}
