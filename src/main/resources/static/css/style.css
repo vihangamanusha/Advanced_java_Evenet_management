@@ -426,6 +426,8 @@ td, th {
     color: #0f7f7f;
     margin-bottom: 20px;
     padding-top: 5px;
+    margin-bottom: 50px;
+
 }
 
 .intro {
@@ -442,7 +444,7 @@ td, th {
 }
 
 .about-box h2{
-    color: #020229;
+    color: #491d11;
 }
 
 /* Venue Grid */
