@@ -144,21 +144,28 @@
 <script th:inline="javascript">
     /*<![CDATA[*/
 
-    let error = /*[[${param.error}]]*/ false;
+    let loginError = /*[[${param.loginError}]]*/ false;
     let registered = /*[[${param.registered}]]*/ false;
     let exists = /*[[${param.exists}]]*/ false;
 
-    if (error) {
-        alert("❌ Invalid email or password");
-    }
+    document.addEventListener("DOMContentLoaded", function () {
 
-    if (registered) {
-        alert("🎉 Account created successfully!");
-    }
+        // 🔥 Login error → open modal + show message
+        if (loginError) {
+            openLogin();
+        }
 
-    if (exists) {
-        alert("⚠️ User already exists!");
-    }
+        // ✅ Signup success
+        if (registered) {
+            alert("🎉 Account created successfully!");
+        }
+
+        // ⚠️ User exists
+        if (exists) {
+            alert("User already exists!");
+        }
+
+    });
 
     /*]]>*/
 </script>
