@@ -489,3 +489,61 @@ td, th {
     background-color: #ededed;
     padding-bottom: 20px;
 }
+
+/* CONTACT SECTION */
+.contact-section {
+    padding: 40px;
+    background-color: #f4f9f9;
+    text-align: center;
+}
+
+/* FORM BOX */
+.contact-section form {
+    width: 400px;
+    margin: 30px auto;
+    background-color: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* INPUTS + SELECT + TEXTAREA */
+.contact-section input,
+.contact-section select,
+.contact-section textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+/* TEXTAREA */
+.contact-section textarea {
+    resize: none;
+    height: 100px;
+}
+
+/* BUTTON */
+.contact-section button {
+    width: 100%;
+    padding: 12px;
+    background-color: #0f7f7f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* BUTTON HOVER */
+.contact-section button:hover {
+    background-color: #095e5e;
+}
+
+/* SUCCESS MESSAGE */
+.contact-section p {
+    margin-top: 15px;
+    font-weight: bold;
+}
