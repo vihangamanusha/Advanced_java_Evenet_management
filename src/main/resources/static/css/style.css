@@ -601,3 +601,13 @@ td, th {
 .feedback-view h1{
     margin-left: 250px;
 }
+/*login succesfull*/
+.success-box {
+    width: 300px;
+    margin: 15px auto;
+    padding: 10px;
+    background-color: #d4edda;
+    color: #155724;
+    border-radius: 5px;
+    text-align: center;
+}

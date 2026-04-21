@@ -13,7 +13,7 @@ public class AuthController {
     @Autowired
     private UserRepository userRepository;
 
-    @PostMapping("/login")
+    /*@PostMapping("/login")
     public String login(@RequestParam String email,
                         @RequestParam String password,
                         Model model) {
@@ -36,31 +36,33 @@ public class AuthController {
             // ❌ ERROR
             return "redirect:/?error=true";
         }
+    }*/
+    @PostMapping("/login")
+    public String login(@RequestParam String email,
+                        @RequestParam String password,
+                        Model model) {
+
+        User user = userRepository.findByEmailAndPassword(email, password);
+
+        if (user != null) {
+            return "redirect:/"; // or booking
+        } else {
+            return "redirect:/?loginError=true";
+        }
     }
     // SIGNUP
     @PostMapping("/signup")
-    public String signup(User user, Model model) {
+    public String signup(User user) {
 
-        // 1. Check empty fields
-        if (user.getEmail() == null || user.getEmail().isEmpty() ||
-                user.getPassword() == null || user.getPassword().isEmpty()) {
-
-            model.addAttribute("error", "Please fill all required fields!");
-            return "redirect:/admin/dashboard";
-        }
-
-        // 2. Check if user already exists
+        // check existing user
         User existingUser = userRepository.findByEmail(user.getEmail());
 
         if (existingUser != null) {
-            model.addAttribute("error", "User already exists!");
-            return "redirect:/?success";
+            return "redirect:/?exists=true";
         }
 
-        // 3. Save user
         userRepository.save(user);
 
-        model.addAttribute("success", "Account created successfully!");
-        return "redirect:/?success";
+        return "redirect:/?registered=true";
     }
 }

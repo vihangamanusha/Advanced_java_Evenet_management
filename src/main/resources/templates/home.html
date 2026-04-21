@@ -127,9 +127,40 @@
 <!-- Slideshow JS -->
 <script th:src="@{/js/slideshow.js}"></script>
 <script th:src="@{/js/login.js}"></script>
-
+<!--
 <p style="color:red;" th:if="${error}" th:text="${error}"></p>
 <p style="color:green;" th:if="${success}" th:text="${success}"></p>
+<p th:if="${param.error}" style="color:red;">
+    Invalid email or password
+</p>
 
+<div th:if="${param.registered}" class="success-box">
+    🎉 Account created successfully!
+</div>
+
+<p th:if="${param.exists}" style="color:red;">
+    User already exists!
+</p>-->
+<script th:inline="javascript">
+    /*<![CDATA[*/
+
+    let error = /*[[${param.error}]]*/ false;
+    let registered = /*[[${param.registered}]]*/ false;
+    let exists = /*[[${param.exists}]]*/ false;
+
+    if (error) {
+        alert("❌ Invalid email or password");
+    }
+
+    if (registered) {
+        alert("🎉 Account created successfully!");
+    }
+
+    if (exists) {
+        alert("⚠️ User already exists!");
+    }
+
+    /*]]>*/
+</script>
 </body>
 </html>
