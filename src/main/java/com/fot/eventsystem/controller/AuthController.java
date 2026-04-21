@@ -12,7 +12,7 @@ public class AuthController {
 
     @Autowired
     private UserRepository userRepository;
-    
+
     @PostMapping("/login")
     public String login(@RequestParam String email,
                         @RequestParam String password,
