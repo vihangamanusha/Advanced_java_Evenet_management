@@ -490,60 +490,114 @@ td, th {
     padding-bottom: 20px;
 }
 
-/* CONTACT SECTION */
+/* CONTACT SECTION BACKGROUND */
 .contact-section {
+    background: url('/images/back.jpg') no-repeat center center/cover;
+    position: relative;
+    padding: 50px 20px;
+}
+
+/* DARK OVERLAY */
+.overlay {
+    background-color: rgba(0, 0, 0, 0.6); /* 🔥 opacity */
     padding: 40px;
-    background-color: #f4f9f9;
+    color: white;
+}
+
+/* TITLE */
+.contact-section h1 {
     text-align: center;
+    font-size: 36px;
 }
 
-/* FORM BOX */
-.contact-section form {
-    width: 400px;
-    margin: 30px auto;
-    background-color: white;
-    padding: 25px;
+.contact-desc {
+    text-align: center;
+    margin-bottom: 35px;
+    color: #68f388;
+    font-size: 20px;
+}
+
+/* CONTAINER */
+.contact-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+/* LEFT SIDE */
+.contact-info {
+    width: 45%;
+}
+.contact-info p{
+    margin-left: 25px;
+}
+
+/* RIGHT SIDE */
+.contact-form {
+    width: 45%;
+    background: white;
+    padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    color: black;
 }
 
-/* INPUTS + SELECT + TEXTAREA */
-.contact-section input,
-.contact-section select,
-.contact-section textarea {
+/* FORM INPUTS */
+.contact-form input,
+.contact-form textarea {
+    width: 97%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+.contact-form select{
     width: 100%;
     padding: 10px;
     margin: 10px 0;
-    border: 1px solid #ccc;
     border-radius: 5px;
-    font-size: 14px;
+    border: 1px solid #ccc;
 }
-
 /* TEXTAREA */
-.contact-section textarea {
-    resize: none;
+.contact-form textarea {
     height: 100px;
+    resize: none;
 }
 
 /* BUTTON */
-.contact-section button {
+.contact-form button {
     width: 100%;
     padding: 12px;
     background-color: #0f7f7f;
     color: white;
     border: none;
-    border-radius: 5px;
-    font-size: 16px;
     cursor: pointer;
 }
 
 /* BUTTON HOVER */
-.contact-section button:hover {
+.contact-form button:hover {
     background-color: #095e5e;
 }
 
 /* SUCCESS MESSAGE */
-.contact-section p {
-    margin-top: 15px;
-    font-weight: bold;
+.success-msg {
+    color: green;
+    margin-top: 10px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .contact-info, .contact-form {
+        width: 100%;
+    }
+}
+
+.feedback-view table{
+    margin-left: 240px;   /* space for sidebar */
+    width: calc(100% - 260px);
+    border-collapse: collapse;
+    margin-top: 50px;
+}
+
+.feedback-view h1{
+    margin-left: 250px;
 }

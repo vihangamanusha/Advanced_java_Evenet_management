@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Feedback</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<!-- Sidebar -->
+<div class="sidebar">
+
+    <div class="modal-logos">
+        <img src="/images/logo2.png" alt="logo">
+        <img src="/images/flogo.png" alt="logo">
+    </div>
+
+    <h2>ADMIN</h2>
+
+    <a href="#">Dashboard</a>
+    <a href="#">Booking Requests</a>
+    <a href="#">Approved Events</a>
+    <a href="/admin/venues">Manage Venues</a> <!-- FIXED -->
+    <a href="#">Manage Users</a>
+    <a th:href="@{/admin/feedback-list}">Feedback-list</a>
+    <a href="#">Latest News</a>
+    <a href="#">Calendar</a>
+    <a th:href="@{/}">Logout</a>
+
+</div>
+
+
+<div class="feedback-view">
+    <h1>FEEDBACK MESSAGES</h1>
+<table >
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Type</th>
+        <th>Message</th>
+    </tr>
+
+    <tr th:each="f : ${feedbacks}">
+        <td th:text="${f.name}"></td>
+        <td th:text="${f.email}"></td>
+        <td th:text="${f.phone}"></td>
+        <td th:text="${f.type}"></td>
+        <td th:text="${f.message}"></td>
+    </tr>
+
+</table>
+</div>
+
+
+
+</body>
+</html>
