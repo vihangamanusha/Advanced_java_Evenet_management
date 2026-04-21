@@ -12,31 +12,7 @@ public class AuthController {
 
     @Autowired
     private UserRepository userRepository;
-
-    /*@PostMapping("/login")
-    public String login(@RequestParam String email,
-                        @RequestParam String password,
-                        Model model) {
-
-        User user = userRepository.findByEmailAndPassword(email, password);
-
-        if (user != null) {
-
-            // ✅ SUCCESS
-            model.addAttribute("success", "Login successful!");
-
-            // 🔥 Redirect based on user type
-            if (user.getUsertype().equals("MEMBER")) {
-                return "redirect:/booking/member";
-            } else {
-                return "redirect:/booking/public";
-            }
-
-        } else {
-            // ❌ ERROR
-            return "redirect:/?error=true";
-        }
-    }*/
+    
     @PostMapping("/login")
     public String login(@RequestParam String email,
                         @RequestParam String password,

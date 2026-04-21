@@ -91,17 +91,14 @@
                         <!-- Error message -->
                         <p id="memberError" style="color:red;"></p>
                         <!-- Backend errors (put HERE) -->
-                        <!--<p th:if="${param.exists}" style="color:red;">
+                        <p th:if="${param.exists}" style="color:red;">
                             ❌ Email already exists!
                         </p>
 
                         <p th:if="${param.registered}" style="color:green;">
                             ✅ Registration successful!
-                        </p>-->
-                        <div style="text-align:center; margin-top:10px;">
-                            <p th:if="${emailError}" th:text="${emailError}" style="color:red;"></p>
-                            <p th:if="${success}" th:text="${success}" style="color:green;"></p>
-                        </div>
+                        </p>
+
                     </form>
                 </div>
 
@@ -120,18 +117,15 @@
                         <!-- Password mismatch error (JS) -->
                         <p id="publicError" style="color:red;"></p>
 
-                        <!-- Backend errors (put HERE)
+                        <!-- Backend errors (put HERE)-->
                         <p th:if="${param.exists}" style="color:red;">
                             ❌ Email already exists!
                         </p>
 
                         <p th:if="${param.registered}" style="color:green;">
                             ✅ Registration successful!
-                        </p>-->
-                        <div style="text-align:center; margin-top:10px;">
-                            <p th:if="${emailError}" th:text="${emailError}" style="color:red;"></p>
-                            <p th:if="${success}" th:text="${success}" style="color:green;"></p>
-                        </div>
+                        </p>
+
                     </form>
                 </div>
 
