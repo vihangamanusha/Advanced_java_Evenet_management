@@ -21,13 +21,22 @@ public class AuthController {
         User user = userRepository.findByEmailAndPassword(email, password);
 
         if (user != null) {
-            return "redirect:/admin/dashboard";
+
+            // ✅ SUCCESS
+            model.addAttribute("success", "Login successful!");
+
+            // 🔥 Redirect based on user type
+            if (user.getUsertype().equals("MEMBER")) {
+                return "redirect:/booking/member";
+            } else {
+                return "redirect:/booking/public";
+            }
+
         } else {
-            model.addAttribute("error", "Invalid email or password");
-            return "redirect:/?success";
+            // ❌ ERROR
+            return "redirect:/?error=true";
         }
     }
-
     // SIGNUP
     @PostMapping("/signup")
     public String signup(User user, Model model) {
