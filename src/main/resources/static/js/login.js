@@ -33,3 +33,31 @@ function showPublic() {
     document.getElementById("memberForm").style.display = "none";
     document.getElementById("publicForm").style.display = "block";
 }
+
+function validateMember() {
+    let pwd = document.getElementById("memberPwd").value;
+    let confirmPwd = document.getElementById("memberConfirmPwd").value;
+    let error = document.getElementById("memberError");
+
+    if (pwd !== confirmPwd) {
+        error.innerText = "❌ Passwords do not match!";
+        return false; // ❗ this is what prevents account creation
+    }
+
+    error.innerText = "";
+    return true;
+}
+
+function validatePublic() {
+    let pwd = document.getElementById("publicPwd").value;
+    let confirmPwd = document.getElementById("publicConfirmPwd").value;
+    let error = document.getElementById("publicError");
+
+    if (pwd !== confirmPwd) {
+        error.innerText = "❌ Passwords do not match!";
+        return false; // ❗ this is what prevents account creation
+    }
+
+    error.innerText = "";
+    return true;
+}
