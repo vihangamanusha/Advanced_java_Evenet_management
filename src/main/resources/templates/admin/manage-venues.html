@@ -5,7 +5,7 @@
   <title>Event Management System-Admin</title>
   <link rel="stylesheet" href="/css/style.css">
 </head>
-<body>
+<body style="background-color: #e1e0e0; ">
 
 <!-- Sidebar -->
 <div class="sidebar">
@@ -16,8 +16,8 @@
   </div>
 
   <h2>ADMIN </h2>
-  
-  <a href="#">DASHBOARD</a>
+
+  <a th:href="@{/admin/dashboard}">DASHBOARD</a>
   <a href="#">CALENDER</a>
   <a href="#">BOOKING REQUEST</a>
   <a href="#">APPROVED EVENTS</a>
@@ -32,9 +32,9 @@
 
 <!-- MAIN -->
 <div class="main-content">
-
-  <h1>Manage Venues</h1>
-
+  <div class="border">
+      <h1>MANAGE VENUES</h1>
+  </div>
   <!-- ERROR / SUCCESS -->
   <p style="color:red;" th:if="${error}" th:text="${error}"></p>
   <p style="color:green;" th:if="${success}" th:text="${success}"></p>
@@ -42,7 +42,7 @@
   <!-- ADD VENUE FORM (FIXED + IMAGE UPLOAD) -->
   <div class="form-box">
 
-    <h2>Add New Venue</h2>
+    <h2>ADD NEW VENUE</h2>
 
     <form action="/admin/venues/save" method="post" enctype="multipart/form-data">
 
@@ -60,7 +60,7 @@
   </div>
 
   <!-- VENUE TABLE -->
-  <h2>All Venues</h2>
+  <h2>ALL VENUES</h2>
 
   <table border="1">
 
@@ -86,7 +86,11 @@
       </td>
 
       <td>
-        <a th:href="@{'/admin/venues/delete/' + ${venue.id}}">Delete</a>
+        <a th:href="@{'/admin/venues/delete/' + ${venue.id}}"
+           class="btn-delete"
+           onclick="return confirm('Delete this venue?')">
+          Delete
+        </a>
       </td>
 
     </tr>

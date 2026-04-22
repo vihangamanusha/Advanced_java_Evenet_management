@@ -381,7 +381,7 @@ table {
 }
 
 table, th, td {
-    border: 1px solid #ccc;
+    border: 1px solid #e8c563;
 }
 
 th {
@@ -400,6 +400,7 @@ td, th {
     border-radius: 10px;
     width: 400px;
     margin-bottom: 20px;
+    margin-left: 380px;
 }
 
 .form-box input {
@@ -414,6 +415,26 @@ td, th {
     background-color: #0f7f7f;
     color: white;
     border: none;
+}
+
+.btn-delete {
+    display: inline-block;
+    padding: 6px 14px;
+    background-color: #e74c3c;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.btn-delete:hover {
+    background-color: #c0392b;
+    transform: scale(1.05);
+}
+
+.btn-delete:active {
+    transform: scale(0.95);
 }
 
 /* ABOUT PAGE */
