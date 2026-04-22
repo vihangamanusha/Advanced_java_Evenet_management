@@ -31,15 +31,23 @@
 <div class="news-manage">
     <h2>Add News</h2>
 
-    <form action="/admin/news/save" method="post" enctype="multipart/form-data">
+    <form th:action="${news != null} ? @{/admin/news/update} : @{/admin/news/save}"
+          method="post"
+          enctype="multipart/form-data">
 
-        <input type="text" name="title" placeholder="News Title" required>
+        <!-- hidden id for update -->
+        <input type="hidden" name="id" th:value="${news != null} ? ${news.id} : ''">
 
-        <textarea name="description" placeholder="Description" required></textarea>
+        <input type="text" name="title" placeholder="News Title"
+               th:value="${news != null} ? ${news.title} : ''" required>
 
-        <input type="file" name="imageFile" required>
+        <textarea name="description" placeholder="Description"
+                  th:text="${news != null} ? ${news.description} : ''"></textarea>
 
-        <button type="submit">Save</button>
+        <input type="file" name="imageFile">
+
+        <button type="submit"
+                th:text="${news != null} ? 'Update' : 'Save'"></button>
 
     </form>
 </div>
@@ -55,6 +63,7 @@
             <th>Title</th>
             <th>Description</th>
             <th>Image</th>
+            <th>Actions</th>
         </tr>
 
         <tr th:each="n : ${newsList}">
@@ -64,6 +73,14 @@
 
             <td>
                 <img th:src="@{'/uploads/' + ${n.image}}" width="100">
+            </td>
+            <td>
+                <!-- EDIT -->
+                <a th:href="@{'/admin/news/edit/' + ${n.id}}">Edit</a> |
+
+                <!-- DELETE -->
+                <a th:href="@{'/admin/news/delete/' + ${n.id}}"
+                   onclick="return confirm('Delete this news?')">Delete</a>
             </td>
         </tr>
 

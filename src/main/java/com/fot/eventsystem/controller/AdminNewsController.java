@@ -55,4 +55,48 @@ public class AdminNewsController {
 
         return "redirect:/admin/news";
     }
+    @GetMapping("/edit/{id}")
+    public String editNews(@PathVariable int id, Model model) {
+        News news = newsRepository.findById(id).orElse(null);
+        model.addAttribute("news", news);
+        model.addAttribute("newsList", newsRepository.findAll());
+        return "admin/manage-news";
+    }
+
+    @PostMapping("/update")
+    public String updateNews(
+            @RequestParam int id,
+            @RequestParam String title,
+            @RequestParam String description,
+            @RequestParam("imageFile") MultipartFile file
+    ) throws IOException {
+
+        News news = newsRepository.findById(id).orElse(null);
+
+        if (news != null) {
+
+            news.setTitle(title);
+            news.setDescription(description);
+
+            // if new image uploaded
+            if (!file.isEmpty()) {
+                String uploadDir = System.getProperty("user.dir") + "/uploads/";
+
+                String fileName = System.currentTimeMillis() + "_" + file.getOriginalFilename();
+                file.transferTo(new File(uploadDir + fileName));
+
+                news.setImage(fileName);
+            }
+
+            newsRepository.save(news);
+        }
+
+        return "redirect:/admin/news";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteNews(@PathVariable int id) {
+        newsRepository.deleteById(id);
+        return "redirect:/admin/news";
+    }
 }
