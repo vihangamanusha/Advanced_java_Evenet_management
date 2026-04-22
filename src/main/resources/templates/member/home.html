@@ -4,7 +4,7 @@
     <title>Member Dashboard</title>
     <link rel="stylesheet" href="/css/style.css">
 </head>
-<body>
+<body style="background-color: #e1e0e0; ">
 <div th:fragment="header">
 
     <!-- MAIN HEADER -->
@@ -43,12 +43,7 @@
 
 </div>
 
-
-
-
-<h2>Welcome <span th:text="${user.email}"></span></h2>
-
-<h2>Booking Form (Discount Price)</h2>
+<h3 style="text-align: center;color: #03805d">Welcome <span th:text="${user.email}"></span></h3>
 
 <div class="booking-container">
 
@@ -82,6 +77,8 @@
             <p>Account Name: Event Management System</p>
             <p>Account No: 123-456-7890</p>
             <p>Branch: Negombo</p>
+            <!-- Member special -->
+            <p style="color:green;">Member Discount Applied ✅</p>
         </div>
 
         <!-- BANK SLIP -->
@@ -94,10 +91,9 @@
 
 </div>
 
-    <!-- Member special -->
-    <p style="color:green;">Member Discount Applied ✅</p>
 
-   
+
+
 
 <!-- Footer -->
 <div th:replace="fragments/footer :: footer"></div>
