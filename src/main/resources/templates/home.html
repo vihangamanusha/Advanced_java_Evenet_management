@@ -84,7 +84,7 @@
 
         <div class="latest-item" th:each="n : ${newsList}">
 
-            <img th:src="@{'/images/' + ${n.image}}" alt="News">
+            <img th:src="@{'/uploads/' + ${n.image}}" alt="News">
 
             <h3 th:text="${n.title}"></h3>
 

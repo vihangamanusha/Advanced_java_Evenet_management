@@ -641,3 +641,73 @@ td, th {
 .manage-user h1{
     padding-left:10px ;
 }
+
+/*news manage admin*/
+/* Container */
+.news-manage {
+    width: 420px;
+    margin: 50px auto;
+    padding: 25px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+    text-align: center;
+}
+
+/* Title */
+.news-manage h2 {
+    margin-bottom: 20px;
+    color: #0f7f7f;
+    font-size: 24px;
+}
+
+/* Inputs & textarea */
+.news-manage input,
+.news-manage textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+/* Textarea */
+.news-manage textarea {
+    height: 110px;
+    resize: none;
+}
+
+/* File input */
+.news-manage input[type="file"] {
+    border: none;
+}
+
+/* Focus effect */
+.news-manage input:focus,
+.news-manage textarea:focus {
+    outline: none;
+    border-color: #0f7f7f;
+    box-shadow: 0 0 5px rgba(15,127,127,0.4);
+}
+
+/* Button */
+.news-manage button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    background: #0f7f7f;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* Hover */
+.news-manage button:hover {
+    background: #0c6666;
+    transform: scale(1.03);
+}
