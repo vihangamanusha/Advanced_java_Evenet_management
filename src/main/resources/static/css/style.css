@@ -652,6 +652,16 @@ td, th {
     border-radius: 12px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.15);
     text-align: center;
+
+}
+
+.news-list table{
+    margin-left: 300px;
+    width: 75%;
+}
+
+.news-list h2{
+    margin-left: 300px;
 }
 
 /* Title */
@@ -659,6 +669,7 @@ td, th {
     margin-bottom: 20px;
     color: #0f7f7f;
     font-size: 24px;
+
 }
 
 /* Inputs & textarea */
