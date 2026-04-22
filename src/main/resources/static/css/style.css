@@ -437,6 +437,24 @@ td, th {
     transform: scale(0.95);
 }
 
+/*update button*/
+.update-btn {
+    background-color: #28a745;   /* green color */
+    color: white;
+    padding: 6px 14px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.update-btn:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+}
+
+
 /* ABOUT PAGE */
 .about-section {
     padding: 0px;
@@ -656,8 +674,8 @@ td, th {
 
 /*manage user admin page*/
 .manage-user{
-    width: 75%;
-    padding-left: 300px;
+    width: 80%;
+    padding-left: 250px;
 }
 
 .manage-user h1{
