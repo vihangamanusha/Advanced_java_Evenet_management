@@ -46,7 +46,7 @@
 
 
 
-<h1>Welcome MEMBER</h1>
+<h2>Welcome <span th:text="${user.email}"></span></h2>
 
 <h2>Booking Form (Discount Price)</h2>
 
@@ -61,5 +61,7 @@
     <button>Book Now</button>
 </form>
 
+<!-- Footer -->
+<div th:replace="fragments/footer :: footer"></div>
 </body>
 </html>
