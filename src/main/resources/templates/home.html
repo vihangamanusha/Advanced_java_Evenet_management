@@ -82,40 +82,14 @@
 
     <div class="latest-grid">
 
-        <!-- Event 1 -->
-        <div class="latest-item">
+        <div class="latest-item" th:each="n : ${newsList}">
 
-            <img th:src="@{/images/image2.png}" alt="Event">
-            <h3>Annual Technology Exhibition</h3>
-            <p>
-                The Faculty of Technology successfully hosted the annual exhibition showcasing innovative projects.
-            </p>
-        </div>
+            <img th:src="@{'/images/' + ${n.image}}" alt="News">
 
-        <!-- Event 2 -->
-        <div class="latest-item">
+            <h3 th:text="${n.title}"></h3>
 
-            <img th:src="@{/images/image3.png}" alt="Event">
-            <h3>Innovation Day</h3>
-            <p>
-                Students presented creative solutions and research innovations to industry experts.
-            </p>
-        </div>
-        <div class="latest-item">
+            <p th:text="${n.description}"></p>
 
-            <img th:src="@{/images/image3.png}" alt="Event">
-            <h3>Innovation Day</h3>
-            <p>
-                Students presented creative solutions and research innovations to industry experts.
-            </p>
-        </div>
-        <div class="latest-item">
-
-            <img th:src="@{/images/image3.png}" alt="Event">
-            <h3>Innovation Day</h3>
-            <p>
-                Students presented creative solutions and research innovations to industry experts.
-            </p>
         </div>
 
     </div>
