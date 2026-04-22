@@ -60,84 +60,84 @@
             </p>
         </div>
 
-        <!-- SIGNUP MODAL -->
-        <div id="signupModal" class="modal">
-            <div class="modal-content">
-               <span class="close" onclick="closeSignup()">&times;</span>
-                <div class="modal-logos">
-                    <img src="/images/logo2.png" alt="logo">
-                    <img src="/images/flogo.png" alt="logo">
-                </div>
 
-                <h2>SIGN UP</h2>
-
-                <!-- User Type -->
-                <div class="user-type">
-                    <button onclick="showMember()">Member</button>
-                    <button onclick="showPublic()">Public</button>
-                </div>
-
-                <!-- MEMBER FORM -->
-                <div id="memberForm">
-                    <form action="/signup" method="post" onsubmit="return validateMember()">
-
-                        <input type="hidden" name="usertype" value="MEMBER">
-
-                        <input type="text" name="registerno" placeholder="Registration Number" required>
-                        <input type="email" name="email" placeholder="Email" required>
-                        <input type="password" name="pwd" placeholder="Password" required>
-                        <input type="password" name="confirmPwd"  placeholder="Confirm Password" required>
-                        <button type="submit">REGISTER</button>
-                        <!-- Error message -->
-                        <p id="memberError" style="color:red;"></p>
-                        <!-- Backend errors (put HERE) -->
-                        <p th:if="${param.exists}" style="color:red;">
-                            ❌ Email already exists!
-                        </p>
-
-                        <p th:if="${param.registered}" style="color:green;">
-                            ✅ Registration successful!
-                        </p>
-
-                    </form>
-                </div>
-
-                <!-- PUBLIC FORM -->
-                <div id="publicForm" style="display:none;">
-                    <form action="/signup" method="post" onsubmit="return validatePublic()">
-
-                        <input type="hidden" name="usertype" value="PUBLIC">
-
-                        <input type="text" name="phoneno" placeholder="Phone Number" required>
-                        <input type="email" name="email" placeholder="Email" required>
-                        <input type="text" name="orgname" placeholder="Organization Name" required>
-                        <input type="password" name="pwd" placeholder="Password" required>
-                        <input type="password" name="confirmPwd"  placeholder="Confirm Password" required>
-                        <button type="submit">REGISTER</button>
-                        <!-- Password mismatch error (JS) -->
-                        <p id="publicError" style="color:red;"></p>
-
-                        <!-- Backend errors (put HERE)-->
-                        <p th:if="${param.exists}" style="color:red;">
-                            ❌ Email already exists!
-                        </p>
-
-                        <p th:if="${param.registered}" style="color:green;">
-                            ✅ Registration successful!
-                        </p>
-
-                    </form>
-                </div>
-
-                <p>
-                    Already have an account?
-                    <a href="#" onclick="showLogin()">Login</a>
-                </p>
-
+    </div>
+    <!-- SIGNUP MODAL -->
+    <div id="signupModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeSignup()">&times;</span>
+            <div class="modal-logos">
+                <img src="/images/logo2.png" alt="logo">
+                <img src="/images/flogo.png" alt="logo">
             </div>
+
+            <h2>SIGN UP</h2>
+
+            <!-- User Type -->
+            <div class="user-type">
+                <button onclick="showMember()">Member</button>
+                <button onclick="showPublic()">Public</button>
+            </div>
+
+            <!-- MEMBER FORM -->
+            <div id="memberForm">
+                <form action="/signup" method="post" onsubmit="return validateMember()">
+
+                    <input type="hidden" name="usertype" value="MEMBER">
+
+                    <input type="text" name="registerno" placeholder="Registration Number" required>
+                    <input type="email" name="email" placeholder="Email" required>
+                    <input type="password" name="pwd" placeholder="Password" required>
+                    <input type="password" name="confirmPwd"  placeholder="Confirm Password" required>
+                    <button type="submit">REGISTER</button>
+                    <!-- Error message -->
+                    <p id="memberError" style="color:red;"></p>
+                    <!-- Backend errors (put HERE) -->
+                    <p th:if="${param.exists}" style="color:red;">
+                        ❌ Email already exists!
+                    </p>
+
+                    <p th:if="${param.registered}" style="color:green;">
+                        ✅ Registration successful!
+                    </p>
+
+                </form>
+            </div>
+
+            <!-- PUBLIC FORM -->
+            <div id="publicForm" style="display:none;">
+                <form action="/signup" method="post" onsubmit="return validatePublic()">
+
+                    <input type="hidden" name="usertype" value="PUBLIC">
+
+                    <input type="text" name="phoneno" placeholder="Phone Number" required>
+                    <input type="email" name="email" placeholder="Email" required>
+                    <input type="text" name="orgname" placeholder="Organization Name" required>
+                    <input type="password" name="pwd" placeholder="Password" required>
+                    <input type="password" name="confirmPwd"  placeholder="Confirm Password" required>
+                    <button type="submit">REGISTER</button>
+                    <!-- Password mismatch error (JS) -->
+                    <p id="publicError" style="color:red;"></p>
+
+                    <!-- Backend errors (put HERE)-->
+                    <p th:if="${param.exists}" style="color:red;">
+                        ❌ Email already exists!
+                    </p>
+
+                    <p th:if="${param.registered}" style="color:green;">
+                        ✅ Registration successful!
+                    </p>
+
+                </form>
+            </div>
+
+            <p>
+                Already have an account?
+                <a href="#" onclick="showLogin()">Login</a>
+            </p>
+
         </div>
     </div>
-
 
 </div>
 
