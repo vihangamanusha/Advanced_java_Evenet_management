@@ -26,7 +26,10 @@ public class AuthController {
             // 🔥 SAVE USER IN SESSION
             session.setAttribute("loggedUser", user);
 
-            if ("MEMBER".equals(user.getUsertype())) {
+            // 🔥 ROLE BASED REDIRECT
+            if ("ADMIN".equals(user.getUsertype())) {
+                return "redirect:/admin/dashboard";
+            } else if ("MEMBER".equals(user.getUsertype())) {
                 return "redirect:/member/home";
             } else {
                 return "redirect:/public/home";
