@@ -696,9 +696,16 @@ td, th {
 }
 
 .news-list table{
-    margin-left: 300px;
-    width: 75%;
+    margin-left: 250px;
+    width: 80%;
 }
+
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;   /* space between buttons */
+}
+
 
 .news-list h2{
     margin-left: 300px;

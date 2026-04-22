@@ -6,7 +6,7 @@
     <title>Event Management System-Admin</title>
     <link rel="stylesheet" href="/css/style.css">
 </head>
-<body>
+<body style="background-color: #e1e0e0; ">
 
 <!-- Sidebar -->
 <div class="sidebar">
@@ -31,8 +31,12 @@
 
 </div>
 
+<div class="border">
+    <h1 style="padding-left: 250px">ADD LATEST EVENTS & NEWS</h1>
+</div>
+
 <div class="news-manage">
-    <h2>Add News</h2>
+    <h2>ADD NEW NEWS</h2>
 
     <form th:action="${news != null} ? @{/admin/news/update} : @{/admin/news/save}"
           method="post"
@@ -58,7 +62,7 @@
 <!-- ✅ SHOW NEWS -->
 <div class="news-list">
 
-    <h2>All News</h2>
+    <h2>ALL NEWS</h2>
 
     <table border="1">
         <tr>
@@ -78,12 +82,17 @@
                 <img th:src="@{'/uploads/' + ${n.image}}" width="100">
             </td>
             <td>
+                <div class="action-buttons">
                 <!-- EDIT -->
-                <a th:href="@{'/admin/news/edit/' + ${n.id}}">Edit</a> |
+                <a th:href="@{'/admin/news/edit/' + ${n.id}}"
+
+                   class="update-btn">Edit</a>
 
                 <!-- DELETE -->
                 <a th:href="@{'/admin/news/delete/' + ${n.id}}"
+                   class="btn-delete"
                    onclick="return confirm('Delete this news?')">Delete</a>
+                </div>
             </td>
         </tr>
 
