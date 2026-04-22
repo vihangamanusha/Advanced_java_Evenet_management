@@ -1,5 +1,6 @@
 function openLogin() {
     document.getElementById("loginModal").style.display = "block";
+    document.getElementById("loginForm").reset();
 }
 
 function closeLogin() {

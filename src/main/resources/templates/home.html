@@ -115,6 +115,10 @@
         // LOGIN ERROR → open login popup
         if (loginError) {
             openLogin();
+
+            setTimeout(function () {
+                document.getElementById("loginForm").reset();
+            }, 100);
         }
 
         // SIGNUP ERROR → open signup popup
