@@ -21,7 +21,13 @@ public class AuthController {
         User user = userRepository.findByEmailAndPassword(email, password);
 
         if (user != null) {
-            return "redirect:/"; // or booking
+
+            if ("MEMBER".equals(user.getUsertype())) {
+                return "redirect:/member/home";
+            } else {
+                return "redirect:/public/home";
+            }
+
         } else {
             return "redirect:/?loginError=true";
         }
