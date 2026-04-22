@@ -50,16 +50,54 @@
 
 <h2>Booking Form (Discount Price)</h2>
 
-<form>
-    <input type="text" placeholder="Event Name">
-    <input type="date">
-    <input type="number" placeholder="No of People">
+<div class="booking-container">
+
+    <h2>Event Booking Form</h2>
+
+    <form action="/book" method="post" enctype="multipart/form-data">
+
+        <input type="text" name="eventName" placeholder="Event Name" required>
+
+        <input type="date" name="eventDate" required>
+
+        <input type="time" name="eventTime" required>
+
+        <input type="number" name="peopleCount" placeholder="Number of People" required>
+
+        <input type="text" name="venue" placeholder="Venue" required>
+
+        <textarea name="description" placeholder="Event Description" rows="4" required></textarea>
+
+        <!-- PRICE -->
+        <input type="text" name="price" placeholder="Total Price (Auto / Manual)" readonly>
+
+        <!-- IMAGE UPLOAD -->
+        <label>Upload Event Image</label>
+        <input type="file" name="eventImage" accept="image/*">
+
+        <!-- BANK DETAILS -->
+        <div class="bank-box">
+            <h3>Bank Details for Payment</h3>
+            <p>Bank: Bank of Ceylon</p>
+            <p>Account Name: Event Management System</p>
+            <p>Account No: 123-456-7890</p>
+            <p>Branch: Negombo</p>
+        </div>
+
+        <!-- BANK SLIP -->
+        <label>Upload Bank Slip</label>
+        <input type="file" name="bankSlip" accept="image/*,application/pdf" required>
+
+        <button type="submit">BOOK NOW</button>
+
+    </form>
+
+</div>
 
     <!-- Member special -->
     <p style="color:green;">Member Discount Applied ✅</p>
 
-    <button>Book Now</button>
-</form>
+   
 
 <!-- Footer -->
 <div th:replace="fragments/footer :: footer"></div>
