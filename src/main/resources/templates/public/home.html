@@ -1,10 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+  <title>Public Dashboard</title>
 </head>
 <body>
+
+<h1>Welcome PUBLIC USER</h1>
+
+<h2>Booking Form (Normal Price)</h2>
+
+<form>
+  <input type="text" placeholder="Event Name">
+  <input type="date">
+  <input type="number" placeholder="No of People">
+
+  <!-- Public pricing -->
+  <p style="color:red;">Standard Pricing Applied ❗</p>
+
+  <button>Book Now</button>
+</form>
 
 </body>
 </html>

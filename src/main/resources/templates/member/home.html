@@ -1,10 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Member Dashboard</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
+<div th:fragment="header">
+
+    <!-- MAIN HEADER -->
+    <div class="main-header">
+
+        <!-- Left Logo -->
+        <div class="logo-left">
+            <img src="/images/logo2.png" alt="Logo">
+        </div>
+
+        <!-- Title -->
+        <div class="title">
+            <h1>Event Management System</h1>
+            <h2>Faculty of Technology</h2>
+            <h3>University of Ruhuna</h3>
+        </div>
+
+        <!-- Right Logo -->
+        <div class="logo-right">
+            <img src="/images/logo1.png" alt="Logo">
+        </div>
+
+    </div>
+
+    <!-- NAVIGATION -->
+    <nav class="navbar">
+        <a href="/">HOME</a>
+        <a th:href="@{/about}">ABOUT US</a>
+        <a href="#">CALANDER</a>
+        <a th:href="@{/contact}">CONTACT US</a>
+
+    </nav>
+
+    </div>
+
+
+</div>
+
+
+
+
+<h1>Welcome MEMBER</h1>
+
+<h2>Booking Form (Discount Price)</h2>
+
+<form>
+    <input type="text" placeholder="Event Name">
+    <input type="date">
+    <input type="number" placeholder="No of People">
+
+    <!-- Member special -->
+    <p style="color:green;">Member Discount Applied ✅</p>
+
+    <button>Book Now</button>
+</form>
 
 </body>
 </html>
