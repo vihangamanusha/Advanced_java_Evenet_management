@@ -5,9 +5,30 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
+<!-- Sidebar -->
+<div class="sidebar">
+    <div class="modal-logos">
+        <img src="/images/logo2.png" alt="logo">
+        <img src="/images/flogo.png" alt="logo">
+    </div>
 
-<h1>MANAGE USERS</h1>
+    <h2>ADMIN</h2>
 
+    <a href="#">Dashboard</a>
+    <a href="#">Booking Requests</a>
+    <a href="#">Approved Events</a>
+    <a th:href="@{/admin/venues}">Manage Venues</a>
+    <a th:href="@{/admin/users}">Manage Users</a>
+    <a th:href="@{/admin/feedback}">Feedback-list</a>
+    <a href="#">Latest News</a>
+    <a href="#">Calendar</a>
+    <a th:href="@{/}">Logout</a>
+
+</div>
+
+
+<div class="manage-user">
+    <h1>MANAGE USERS</h1>
 <table border="1">
     <tr>
         <th>ID</th>
@@ -57,6 +78,6 @@
     </tr>
 
 </table>
-
+</div>
 </body>
 </html>
