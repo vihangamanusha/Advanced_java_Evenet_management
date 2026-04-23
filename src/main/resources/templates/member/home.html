@@ -43,49 +43,64 @@
 
 </div>
 
-<h3 style="text-align: center;color: #03805d">Welcome <span th:text="${user.email}"></span></h3>
+<h3 style="text-align: right;color: #03805d">Welcome <span th:text="${user.email}"></span></h3>
 
 <div class="booking-container">
 
-    <h2>Event Booking Form</h2>
+    <h1 style="color: #f17427">EVENT BOOKING FORM</h1>
 
-    <form action="/book" method="post" enctype="multipart/form-data">
+    <form action="/book" method="post" enctype="multipart/form-data" class="booking-form">
 
-        <input type="text" name="eventName" placeholder="Event Name" required>
+        <!-- LEFT SIDE -->
+        <div class="left-section">
 
-        <input type="date" name="eventDate" required>
+            <input type="text" name="eventName" placeholder="Event Name" required>
 
-        <input type="time" name="eventTime" required>
+            <input type="date" name="eventDate" required>
 
-        <input type="number" name="peopleCount" placeholder="Number of People" required>
+            <label>Event Start :</label>
+            <input type="time" name="eventTimeStart" required>
 
-        <input type="text" name="venue" placeholder="Venue" required>
+            <label>Event End :</label>
+            <input type="time" name="eventTimeend" required>
 
-        <textarea name="description" placeholder="Event Description" rows="4" required></textarea>
+            <input type="number" name="peopleCount" placeholder="Number of People" required>
 
-        <!-- PRICE -->
-        <input type="text" name="price" placeholder="Total Price (Auto / Manual)" readonly>
+            <input type="text" name="venue" placeholder="Venue" required>
 
-        <!-- IMAGE UPLOAD -->
-        <label>Upload Event Image</label>
-        <input type="file" name="eventImage" accept="image/*">
+            <textarea name="description" placeholder="Event Description" rows="4" required></textarea>
 
-        <!-- BANK DETAILS -->
-        <div class="bank-box">
-            <h3>Bank Details for Payment</h3>
-            <p>Bank: Bank of Ceylon</p>
-            <p>Account Name: Event Management System</p>
-            <p>Account No: 123-456-7890</p>
-            <p>Branch: Negombo</p>
-            <!-- Member special -->
-            <p style="color:green;">Member Discount Applied ✅</p>
+            <!-- PRICE -->
+            <input type="text" name="price" placeholder="Total Price" readonly>
+
         </div>
 
-        <!-- BANK SLIP -->
-        <label>Upload Bank Slip</label>
-        <input type="file" name="bankSlip" accept="image/*,application/pdf" required>
+        <!-- RIGHT SIDE -->
+        <div class="right-section">
 
-        <button type="submit">BOOK NOW</button>
+
+
+            <!-- IMAGE -->
+            <label>Upload Event Image :</label>
+            <input type="file" name="eventImage" accept="image/*">
+
+            <!-- BANK DETAILS -->
+            <div class="bank-box">
+                <h3>Bank Details for Payment</h3>
+                <p>Bank:People's Bank </p>
+                <p>Account Name: Event Management System Faculty of Technology</p>
+                <p>Account No: 123-456-7890</p>
+                <p>Branch: Matara</p>
+                <p style="color:green;">Member Discount Applied ✅</p>
+            </div>
+
+            <!-- BANK SLIP -->
+            <label>Upload Bank Slip</label>
+            <input type="file" name="bankSlip" accept="image/*,application/pdf" required>
+
+            <button type="submit">BOOK NOW</button>
+
+        </div>
 
     </form>
 

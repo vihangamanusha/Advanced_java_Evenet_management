@@ -785,56 +785,73 @@ td, th {
 }
 
 /*member home.html*/
-.booking-container {
-    width: 500px;
-    margin: 50px auto;
-    padding: 25px;
+/* FORM LAYOUT */
+.booking-form {
+    display: flex;
+    gap: 20px;
+    width: 80%;
+    align-content: center;
+    padding-bottom: 40px;
+}
+
+/* LEFT SIDE */
+.left-section {
+    flex: 1;
     background: #ffffff;
-    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    padding: 20px;
     border-radius: 10px;
-    font-family: Arial;
+    margin-left: 250px;
 }
 
-.booking-container h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #333;
+/* RIGHT SIDE */
+.right-section {
+    flex: 1;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
 }
 
-.booking-container input,
-.booking-container textarea {
-    width: 100%;
+/* INPUT STYLING */
+.left-section input,
+.right-section input,
+.left-section textarea {
+    width: 95%;
     padding: 10px;
     margin: 8px 0;
-    border: 1px solid #ccc;
     border-radius: 5px;
+    border: 1px solid #ccc;
 }
 
-.booking-container label {
-    font-weight: bold;
-    display: block;
-    margin-top: 10px;
-}
-
+/* BANK BOX */
 .bank-box {
     background: #f5f5f5;
     padding: 10px;
-    margin: 15px 0;
+    margin: 10px 0;
     border-left: 4px solid #007bff;
-    font-size: 14px;
 }
 
-.booking-container button {
+/* BUTTON */
+button {
     width: 100%;
     padding: 12px;
-    background: #28a745;
+    background:#064545;
     color: white;
     border: none;
-    font-size: 16px;
-    cursor: pointer;
     border-radius: 5px;
+    cursor: pointer;
 }
 
-.booking-container button:hover {
-    background: #218838;
+button:hover {
+    background: #02664a;
+}
+
+/* MOBILE VIEW */
+@media (max-width: 768px) {
+    .booking-form {
+        flex-direction: column;
+    }
+}
+
+.booking-container h1{
+    text-align: center;
 }
