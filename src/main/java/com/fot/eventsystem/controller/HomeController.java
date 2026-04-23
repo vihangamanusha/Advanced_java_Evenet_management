@@ -17,7 +17,6 @@ public class HomeController {
     private NewsRepository newsRepository;
 
     @GetMapping("/")
-
     public String home(Model model) {
             model.addAttribute("newsList", newsRepository.findAll());
             return "home";

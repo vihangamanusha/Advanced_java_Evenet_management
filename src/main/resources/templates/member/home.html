@@ -5,7 +5,6 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body style="background-color: #e1e0e0; ">
-<div th:fragment="header">
 
     <!-- MAIN HEADER -->
     <div class="main-header">
@@ -31,10 +30,14 @@
 
     <!-- NAVIGATION -->
     <nav class="navbar">
-        <a href="/">HOME</a>
+        <a th:href="@{/}">HOME</a>
         <a th:href="@{/about}">ABOUT US</a>
         <a href="#">CALANDER</a>
+        <a href="#">BOOKING FORM</a>
+        <a href="#">STATUS</a>
         <a th:href="@{/contact}">CONTACT US</a>
+
+
 
     </nav>
 
@@ -43,68 +46,69 @@
 
 </div>
 
-<h3 style="text-align: right;color: #03805d">Welcome <span th:text="${user.email}"></span></h3>
+    <div class="booking-container">
 
-<div class="booking-container">
+        <h1 style="color: #f17427">EVENT BOOKING FORM</h1>
+        <h3 style="text-align: center;color: #2b2d30">Welcome <span th:text="${user.email}"></span></h3>
 
-    <h1 style="color: #f17427">EVENT BOOKING FORM</h1>
+        <form action="/book" method="post" enctype="multipart/form-data" class="booking-form">
 
-    <form action="/book" method="post" enctype="multipart/form-data" class="booking-form">
+            <!-- LEFT SIDE -->
+            <div class="left-section">
 
-        <!-- LEFT SIDE -->
-        <div class="left-section">
+                <input type="text" name="eventName" placeholder="Event Name" required>
 
-            <input type="text" name="eventName" placeholder="Event Name" required>
+                <input type="date" name="eventDate" required>
 
-            <input type="date" name="eventDate" required>
+                <label>Event Start :</label>
+                <input type="time" name="eventTimeStart" required>
 
-            <label>Event Start :</label>
-            <input type="time" name="eventTimeStart" required>
+                <label>Event End :</label>
+                <input type="time" name="eventTimeend" required>
 
-            <label>Event End :</label>
-            <input type="time" name="eventTimeend" required>
+                <input type="number" name="peopleCount" placeholder="Number of People" required>
 
-            <input type="number" name="peopleCount" placeholder="Number of People" required>
+                <input type="text" name="venue" placeholder="Venue" required>
 
-            <input type="text" name="venue" placeholder="Venue" required>
+                <textarea name="description" placeholder="Event Description" rows="4" required></textarea>
 
-            <textarea name="description" placeholder="Event Description" rows="4" required></textarea>
+                <!-- PRICE -->
+                <input type="text" name="price" placeholder="Total Price" readonly>
 
-            <!-- PRICE -->
-            <input type="text" name="price" placeholder="Total Price" readonly>
-
-        </div>
-
-        <!-- RIGHT SIDE -->
-        <div class="right-section">
-
-
-
-            <!-- IMAGE -->
-            <label>Upload Event Image :</label>
-            <input type="file" name="eventImage" accept="image/*">
-
-            <!-- BANK DETAILS -->
-            <div class="bank-box">
-                <h3>Bank Details for Payment</h3>
-                <p>Bank:People's Bank </p>
-                <p>Account Name: Event Management System Faculty of Technology</p>
-                <p>Account No: 123-456-7890</p>
-                <p>Branch: Matara</p>
-                <p style="color:green;">Member Discount Applied ✅</p>
             </div>
 
-            <!-- BANK SLIP -->
-            <label>Upload Bank Slip</label>
-            <input type="file" name="bankSlip" accept="image/*,application/pdf" required>
+            <!-- RIGHT SIDE -->
+            <div class="right-section">
 
-            <button type="submit">BOOK NOW</button>
 
-        </div>
 
-    </form>
+                <!-- IMAGE -->
+                <label>Upload Event Image :</label>
+                <input type="file" name="eventImage" accept="image/*">
 
-</div>
+                <!-- BANK DETAILS -->
+                <div class="bank-box">
+                    <h3>Bank Details for Payment</h3>
+                    <p>Bank:People's Bank </p>
+                    <p>Account Name: Event Management System Faculty of Technology</p>
+                    <p>Account No: 123-456-7890</p>
+                    <p>Branch: Matara</p>
+                    <p style="color:green;">Member Discount Applied ✅</p>
+                </div>
+
+                <!-- BANK SLIP -->
+                <label>Upload Bank Slip</label>
+                <input type="file" name="bankSlip" accept="image/*,application/pdf" required>
+
+                <button type="submit">BOOK NOW</button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+
 
 
 

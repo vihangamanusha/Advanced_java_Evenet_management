@@ -12,15 +12,17 @@ public class MemberController {
     @GetMapping("/member/home")
     public String memberHome(HttpSession session, Model model) {
 
-        Object obj = session.getAttribute("loggedUser");
+        User user = (User) session.getAttribute("loggedUser");
 
-        if (obj == null) {
-            return "redirect:/"; // not logged in
+        if (user == null) {
+            return "redirect:/?loginError=true";
         }
 
-        User user = (User) obj;
+        //  restrict access
+        if (!"MEMBER".equals(user.getUsertype())) {
+            return "redirect:/"; // not allowed
+        }
 
-        // 🔥 send user to HTML
         model.addAttribute("user", user);
 
         return "member/home";
