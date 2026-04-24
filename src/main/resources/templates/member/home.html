@@ -68,7 +68,15 @@
 
                 <input type="number" name="peopleCount" placeholder="Number of People" required>
 
-                <input type="text" name="venue" placeholder="Venue" required>
+                <select name="venue" required>
+                    <option value="">-- Select Venue --</option>
+
+                    <option th:each="v : ${venues}"
+                            th:value="${v.name}"
+                            th:text="${v.name}">
+                    </option>
+
+                </select>
 
                 <textarea name="description" placeholder="Event Description" rows="4" required></textarea>
 
