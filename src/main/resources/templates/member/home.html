@@ -103,7 +103,9 @@
                 <button type="submit">BOOK NOW</button>
 
             </div>
-
+            <p th:if="${param.success}" style="color:green;">
+                ✅ Booking submitted successfully!
+            </p>
         </form>
 
     </div>
