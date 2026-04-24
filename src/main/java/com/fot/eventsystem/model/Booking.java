@@ -23,6 +23,7 @@ public class Booking {
 
     private String eventImage;
     private String bankSlip;
+    private String userEmail;
 
     public int getId() {
         return id;
@@ -110,5 +111,13 @@ public class Booking {
 
     public void setBankSlip(String bankSlip) {
         this.bankSlip = bankSlip;
+    }
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
     }
 }
