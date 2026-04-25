@@ -41,16 +41,30 @@ public class AuthController {
             return "redirect:/?loginError=true";
         }
     }
-    // SIGNUP
     @PostMapping("/signup")
-    public String signup(User user) {
+    public String signup(
+            @RequestParam String email,
+            @RequestParam String pwd,
+            @RequestParam String confirmPwd,
+            @RequestParam String usertype,
+            @RequestParam(required = false) String registerno,
+            @RequestParam(required = false) String phoneno,
+            @RequestParam(required = false) String orgname
+    ) {
 
-        // check existing user
-        User existingUser = userRepository.findByEmail(user.getEmail());
-
-        if (existingUser != null) {
-            return "redirect:/?exists=true";
+        if (!pwd.equals(confirmPwd)) {
+            return "redirect:/?passwordError=true";
         }
+
+        User user = new User();
+        user.setEmail(email);
+        user.setPassword(pwd);
+
+        user.setUsertype(usertype);
+
+        user.setRegisterno(registerno);
+        user.setPhoneno(phoneno);
+        user.setOrgname(orgname);
 
         userRepository.save(user);
 
