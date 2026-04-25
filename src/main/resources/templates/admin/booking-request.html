@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="icon" type="image/png" th:href="@{/images/logo1.png}">
+    <title>Event Management System-Admin</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body style="background-color: #e1e0e0; ">
+
+<!-- Sidebar -->
+<div class="sidebar">
+    <div class="modal-logos">
+        <img src="/images/logo2.png" alt="logo">
+        <img src="/images/flogo.png" alt="logo">
+    </div>
+
+    <h2>ADMIN </h2>
+
+    <a th:href="@{/admin/dashboard}">DASHBOARD</a>
+    <a th:href="@{/admin/calendar}">CALENDAR</a>
+    <a th:href="@{/admin/request}">BOOKING REQUEST</a>
+    <a th:href="@{/admin/approved-events}">APPROVED EVENTS</a>
+    <a th:href="@{/admin/venues}">MANAGE VENUES</a>
+    <a th:href="@{/admin/users}">MANAGE USERS</a>
+    <a th:href="@{/admin/feedback}">FEEDBACK LIST</a>
+    <a th:href="@{/admin/news}">LATEST NEWS</a><br><br><br>
+
+    <a th:href="@{/}">LOGOUT</a>
+
+</div>
+
+<!-- Main Content -->
+<div class="border">
+    <h1 style="padding-left: 270px">RECENT BOOKING REQUESTS</h1>
+</div>
+
+
+<table border="1" style="margin-left: 250px ;width: 100%">
+    <tr>
+        <th>User Name</th>
+
+        <th>Event Name</th>
+        <th>Venue</th>
+        <th>Description</th>
+        <th>Date</th>
+        <th>Event Time Start</th>
+        <th>Event Time End</th>
+        <th>Event Image</th>
+        <th>Count</th>
+        <th>Price</th>
+        <th>Bank Slip</th>
+        <th>Status</th>
+        <th>Action</th>
+    </tr>
+
+    <tr th:each="b : ${bookings}">
+        <td th:text="${b.userEmail}"></td>
+
+        <td th:text="${b.eventName}"></td>
+        <td th:text="${b.venue}"></td>
+        <td th:text="${b.description}"></td>
+        <td th:text="${b.eventDate}"></td>
+        <td th:text="${b.eventTimeStart}"></td>
+        <td th:text="${b.eventTimeend}"></td>
+        <td>
+            <img th:src="@{'/uploads/'+${b.eventImage}}"
+                 alt="Event Image"
+                 style="width:80px; height:60px; object-fit:cover; border-radius:5px;">
+        </td>
+        <td th:text="${b.peopleCount}"></td>
+
+        <td th:text="${b.price}"></td>
+        <td>
+            <img th:src="@{'/uploads/'+${b.bankSlip}}"
+                 alt="Bank Slip"
+                 style="width:80px; height:60px; object-fit:cover; border-radius:5px;">
+        </td>
+
+
+        <td th:text="${b.status}"></td>
+
+
+        <td>
+            <div class="status-buttons">
+
+                <form th:action="@{'/admin/approve/' + ${b.id}}" method="post" style="display:inline;">
+                    <button type="submit"
+                            class="btn-approve"
+                            th:disabled="${b.status == 'APPROVED'}">
+                        Approve
+                    </button>
+                </form>
+
+                <form th:action="@{'/admin/reject/' + ${b.id}}" method="post" style="display:inline;">
+                    <button type="submit"
+                            class="btn-reject"
+                            th:disabled="${b.status == 'REJECTED'}">
+                        Reject
+                    </button>
+                </form>
+
+            </div>
+        </td>
+
+    </tr>
+
+</table>
+
+</body>
+</html>

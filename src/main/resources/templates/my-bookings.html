@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <script src="/js/login.js"></script>
+    <link rel="icon" type="image/png" th:href="@{/images/logo1.png}">
+    <title>Event Management System-My Bookings</title>
+    <link rel="stylesheet" href="/css/style.css">
+
+    <style>
+        .green { color: green; font-weight: bold; }
+        .red { color: red; font-weight: bold; }
+        .orange { color: orange; font-weight: bold; }
+    </style>
+</head>
+
+<body style="background-color: #e2e1e5">
+
+<!-- Header -->
+<div th:replace="fragments/header :: header"></div>
+
+<div class="main-content">
+
+
+
+    <table border="1" style="width:80%; text-align:center;">
+
+        <tr>
+            <th>Event</th>
+            <th>Venue</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Status</th>
+        </tr>
+
+        <tr th:each="b : ${bookings}">
+
+            <td th:text="${b.eventName}"></td>
+            <td th:text="${b.venue}"></td>
+            <td th:text="${b.eventDate}"></td>
+
+            <td th:text="${b.eventTimeStart} + ' - ' + ${b.eventTimeend}"></td>
+
+            <td>
+                <span th:text="${b.status}"
+                      th:classappend="${b.status == 'APPROVED'} ? 'green' :
+                                     (${b.status == 'REJECTED'} ? 'red' : 'orange')">
+                </span>
+            </td>
+
+        </tr>
+
+    </table>
+
+</div>
+<!-- Footer -->
+<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

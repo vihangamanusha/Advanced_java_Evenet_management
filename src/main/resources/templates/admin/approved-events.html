@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="icon" type="image/png" th:href="@{/images/logo1.png}">
+    <title>Event Management System-Admin</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body style="background-color: #e1e0e0; ">
+
+<!-- Sidebar -->
+<div class="sidebar">
+    <div class="modal-logos">
+        <img src="/images/logo2.png" alt="logo">
+        <img src="/images/flogo.png" alt="logo">
+    </div>
+
+    <h2>ADMIN </h2>
+
+    <a th:href="@{/admin/dashboard}">DASHBOARD</a>
+    <a th:href="@{/admin/calendar}">CALENDAR</a>
+    <a th:href="@{/admin/request}">BOOKING REQUEST</a>
+    <a th:href="@{/admin/approved-events}">APPROVED EVENTS</a>
+    <a th:href="@{/admin/venues}">MANAGE VENUES</a>
+    <a th:href="@{/admin/users}">MANAGE USERS</a>
+    <a th:href="@{/admin/feedback}">FEEDBACK LIST</a>
+    <a th:href="@{/admin/news}">LATEST NEWS</a><br><br><br>
+
+    <a th:href="@{/}">LOGOUT</a>
+
+</div>
+
+<!-- Main Content -->
+<div class="border">
+    <h1 style="padding-left: 270px">APPROVED EVENTS</h1>
+</div>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Approved Events</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<h2>Approved Events</h2>
+
+<table border="1" style="width: 60% ; margin-left: 380px">
+    <tr>
+        <th>Event Name</th>
+        <th>Venue</th>
+        <th>Date</th>
+        <th>Start Time</th>
+        <th>End Time</th>
+        <th>User</th>
+
+    </tr>
+
+    <tr th:each="b : ${bookings}">
+        <td th:text="${b.eventName}"></td>
+        <td th:text="${b.venue}"></td>
+        <td th:text="${b.eventDate}"></td>
+        <td th:text="${b.eventTimeStart}"></td>
+        <td th:text="${b.eventTimeend}"></td>
+        <td th:text="${b.userEmail}"></td>
+
+    </tr>
+
+</table>
+
+</body>
+</html>
+
+
+
+</body>
+</html>

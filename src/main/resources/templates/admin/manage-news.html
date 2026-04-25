@@ -1,0 +1,103 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="icon" type="image/png" th:href="@{/images/logo1.png}">
+    <title>Event Management System-Admin</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body style="background-color: #e1e0e0; ">
+
+<!-- Sidebar -->
+<div class="sidebar">
+    <div class="modal-logos">
+        <img src="/images/logo2.png" alt="logo">
+        <img src="/images/flogo.png" alt="logo">
+    </div>
+
+
+    <h2>ADMIN </h2>
+
+    <a th:href="@{/admin/dashboard}">DASHBOARD</a>
+    <a th:href="@{/admin/calendar}">CALENDAR</a>
+    <a th:href="@{/admin/booking-request}">BOOKING REQUEST</a>
+    <a th:href="@{/admin/approved-events}">APPROVED EVENTS</a>
+    <a th:href="@{/admin/venues}">MANAGE VENUES</a>
+    <a th:href="@{/admin/users}">MANAGE USERS</a>
+    <a th:href="@{/admin/feedback}">FEEDBACK LIST</a>
+    <a th:href="@{/admin/news}">LATEST NEWS</a><br><br><br>
+
+    <a th:href="@{/}">LOGOUT</a>
+
+</div>
+
+<div class="border">
+    <h1 style="padding-left: 250px">ADD LATEST EVENTS & NEWS</h1>
+</div>
+
+<div class="news-manage">
+    <h2>ADD NEW NEWS</h2>
+
+    <form th:action="${news != null} ? @{/admin/news/update} : @{/admin/news/save}"
+          method="post"
+          enctype="multipart/form-data">
+
+        <!-- hidden id for update -->
+        <input type="hidden" name="id" th:value="${news != null} ? ${news.id} : ''">
+
+        <input type="text" name="title" placeholder="News Title"
+               th:value="${news != null} ? ${news.title} : ''" required>
+
+        <textarea name="description" placeholder="Description"
+                  th:text="${news != null} ? ${news.description} : ''"></textarea>
+
+        <input type="file" name="imageFile">
+
+        <button type="submit"
+                th:text="${news != null} ? 'Update' : 'Save'"></button>
+
+    </form>
+</div>
+
+<!-- ✅ SHOW NEWS -->
+<div class="news-list">
+
+    <h2>ALL NEWS</h2>
+
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Image</th>
+            <th>Actions</th>
+        </tr>
+
+        <tr th:each="n : ${newsList}">
+            <td th:text="${n.id}"></td>
+            <td th:text="${n.title}"></td>
+            <td th:text="${n.description}"></td>
+
+            <td>
+                <img th:src="@{'/uploads/' + ${n.image}}" width="100">
+            </td>
+            <td>
+                <div class="action-buttons">
+                <!-- EDIT -->
+                <a th:href="@{'/admin/news/edit/' + ${n.id}}"
+
+                   class="update-btn">Edit</a>
+
+                <!-- DELETE -->
+                <a th:href="@{'/admin/news/delete/' + ${n.id}}"
+                   class="btn-delete"
+                   onclick="return confirm('Delete this news?')">Delete</a>
+                </div>
+            </td>
+        </tr>
+
+    </table>
+
+</div>
+</body>
+</html>

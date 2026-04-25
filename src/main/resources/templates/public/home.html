@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <script src="/js/login.js"></script>
+  <link rel="icon" type="image/png" th:href="@{/images/logo1.png}">
+  <title>Event Management System-Member Dashboard</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body style="background-color: #e1e0e0; ">
+
+<!-- MAIN HEADER -->
+<div class="main-header">
+
+  <!-- Left Logo -->
+  <div class="logo-left">
+    <img src="/images/logo2.png" alt="Logo">
+  </div>
+
+  <!-- Title -->
+  <div class="title">
+    <h1>Event Management System</h1>
+    <h2>Faculty of Technology</h2>
+    <h3>University of Ruhuna</h3>
+  </div>
+
+  <!-- Right Logo -->
+  <div class="logo-right">
+    <img src="/images/logo1.png" alt="Logo">
+  </div>
+
+</div>
+
+<!-- NAVIGATION -->
+<nav class="navbar">
+  <a th:href="@{/}">HOME</a>
+  <a th:href="@{/about}">ABOUT US</a>
+  <a th:href="@{/calendar}">CALENDAR</a>
+  <a href="#">BOOKING FORM</a>
+  <a th:href="@{/my-bookings}">MY BOOKINGS</a>
+  <a th:href="@{/contact}">CONTACT US</a>
+
+
+
+</nav>
+
+</div>
+
+
+</div>
+
+<div class="booking-container">
+
+  <h1 style="color: #f17427">EVENT BOOKING FORM</h1>
+  <h3 style="text-align: center;color: #2b2d30">Welcome <span th:text="${user.email}"></span></h3>
+
+  <form action="/book" method="post" enctype="multipart/form-data" class="booking-form">
+
+    <!-- LEFT SIDE -->
+    <div class="left-section">
+
+      <input type="text" name="eventName" placeholder="Event Name" required>
+
+      <input type="date" name="eventDate" required>
+
+      <label>Event Start :</label>
+      <input type="time" name="eventTimeStart" id="startTime" onchange="calculatePrice()"required>
+
+      <label>Event End :</label>
+      <input type="time" name="eventTimeend" id="endTime" onchange="calculatePrice()"required>
+
+      <input type="number" name="peopleCount" placeholder="Number of People" required>
+
+      <select name="venue" id="venue" onchange="calculatePrice()" required>
+
+        <option value="">-- Select Venue --</option>
+
+        <option th:each="v : ${venues}"
+                th:value="${v.name}"
+                th:data-price="${v.price}"
+                th:text="${v.name}">
+        </option>
+
+      </select>
+
+      <textarea name="description" placeholder="Event Description" rows="4" required></textarea>
+
+      <!-- PRICE -->
+      <input type="text" id="price" name="price" placeholder="Total Price" readonly>
+
+
+    </div>
+
+    <!-- RIGHT SIDE -->
+    <div class="right-section">
+
+
+      <script>
+        function calculatePrice() {
+
+          let select = document.getElementById("venue");
+
+          // 🔥 get price correctly
+          let rate = select.options[select.selectedIndex].getAttribute("data-price");
+
+          let start = document.getElementById("startTime").value;
+          let end = document.getElementById("endTime").value;
+
+          // ❗ convert rate to number
+          if (!start || !end || !rate) return;
+
+          let startTime = new Date("1970-01-01T" + start + ":00");
+          let endTime = new Date("1970-01-01T" + end + ":00");
+
+          let hours = (endTime - startTime) / (1000 * 60 * 60);
+
+          if (hours <= 0) {
+            document.getElementById("price").value = "Invalid Time";
+            return;
+          }
+
+          // 🔥 VERY IMPORTANT (convert string to number)
+          let price = hours * parseFloat(rate);
+
+          document.getElementById("price").value = price;
+        }
+      </script>
+      <!-- IMAGE -->
+      <label>Upload Event Image :</label>
+      <input type="file" name="eventImage" accept="image/*">
+
+      <!-- BANK DETAILS -->
+      <div class="bank-box">
+        <h3>Bank Details for Payment</h3>
+        <p>Bank:People's Bank </p>
+        <p>Account Name: Event Management System Faculty of Technology</p>
+        <p>Account No: 123-456-7890</p>
+        <p>Branch: Matara</p>
+        <p style="color:red;">Standard Price Applied ✅</p>
+      </div>
+
+      <!-- BANK SLIP -->
+      <label>Upload Bank Slip</label>
+      <input type="file" name="bankSlip" accept="image/*,application/pdf" required>
+
+      <button type="submit">BOOK NOW</button>
+      <p id="successMsg" th:if="${param.success}" style="color:green;">
+        ✅ Booking submitted successfully!
+      </p>
+
+      <script>
+        setTimeout(function () {
+          const msg = document.getElementById("successMsg");
+          if (msg) {
+            msg.style.display = "none";
+          }
+        }, 60000); // 60000 ms = 1 minute
+      </script>
+    </div>
+
+  </form>
+
+</div>
+
+
+
+
+
+
+
+<!-- Footer -->
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>
+
+<!-- Public pricing -->
+<p style="color:red;">Standard Pricing Applied ❗</p>

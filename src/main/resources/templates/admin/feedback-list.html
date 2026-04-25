@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="icon" type="image/png" th:href="@{/images/logo1.png}">
+    <title>Event Management System-Admin</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body style="background-color: #e1e0e0; ">
+
+<!-- Sidebar -->
+<div class="sidebar">
+
+    <div class="modal-logos">
+        <img src="/images/logo2.png" alt="logo">
+        <img src="/images/flogo.png" alt="logo">
+    </div>
+
+    <h2>ADMIN </h2>
+
+    <a th:href="@{/admin/dashboard}">DASHBOARD</a>
+    <a th:href="@{/admin/calendar}">CALENDAR</a>
+    <a th:href="@{/admin/booking-request}">BOOKING REQUEST</a>
+    <a th:href="@{/admin/approved-events}">APPROVED EVENTS</a>
+    <a th:href="@{/admin/venues}">MANAGE VENUES</a>
+    <a th:href="@{/admin/users}">MANAGE USERS</a>
+    <a th:href="@{/admin/feedback}">FEEDBACK LIST</a>
+    <a th:href="@{/admin/news}">LATEST NEWS</a><br><br><br>
+
+    <a th:href="@{/}">LOGOUT</a>
+
+</div>
+
+
+<div class="feedback-view">
+    <div class="border">
+       <h1>FEEDBACK MESSAGES</h1>
+    </div>
+<table >
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Type</th>
+        <th>Message</th>
+    </tr>
+
+    <tr th:each="f : ${feedbacks}">
+        <td th:text="${f.name}"></td>
+        <td th:text="${f.email}"></td>
+        <td th:text="${f.phone}"></td>
+        <td th:text="${f.type}"></td>
+        <td th:text="${f.message}"></td>
+    </tr>
+
+</table>
+</div>
+
+
+
+</body>
+</html>

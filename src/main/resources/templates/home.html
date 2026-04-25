@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="icon" type="image/png" th:href="@{/images/logo1.png}">
+    <title>Event Management System-Home</title>
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+</head>
+<body>
+
+<!-- Header -->
+<div th:replace="fragments/header :: header"></div>
+
+<!-- ✅ Slideshow START -->
+<div class="slideshow-container">
+    <div class="mySlides fade">
+        <img th:src="@{/images/image2.png}" style="width:100%">
+    </div>
+
+    <div class="mySlides fade">
+        <img th:src="@{/images/image3.png}" style="width:100%">
+    </div>
+
+    <div class="mySlides fade">
+        <img th:src="@{/images/image1.png}" style="width:100%">
+    </div>
+
+    <a class="prev" onclick="plusSlides(-1)">❮</a>
+    <a class="next" onclick="plusSlides(1)">❯</a>
+</div>
+
+<div style="text-align:center">
+    <span class="dot" onclick="currentSlide(1)"></span>
+    <span class="dot" onclick="currentSlide(2)"></span>
+    <span class="dot" onclick="currentSlide(3)"></span>
+</div>
+<!-- ✅ Slideshow END -->
+
+<!-- ✅ Upcoming Events -->
+<section class="upcoming-events">
+
+    <h1>UPCOMING EVENTS</h1>
+
+    <div class="event-list">
+
+        <div class="event-card" th:each="e : ${approvedEvents}">
+
+            <img th:src="@{'/uploads/' + ${e.eventImage}}" alt="Event">
+
+            <h3 th:text="${e.eventName}"></h3>
+
+            <p>Date: <span th:text="${e.eventDate}"></span></p>
+
+            <p>Time: <span th:text="${e.eventTimeStart}"></span> -
+                <span th:text="${e.eventTimeend}"></span></p>
+
+            <p>Venue: <span th:text="${e.venue}"></span></p>
+
+            <p th:text="${e.description}"></p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="latest-event">
+
+    <h1>LATEST EVENTS & NEWS</h1>
+
+    <div class="latest-grid">
+
+        <div class="latest-item" th:each="n : ${newsList}">
+
+            <img th:src="@{'/uploads/' + ${n.image}}" alt="News">
+
+            <h3 th:text="${n.title}"></h3>
+
+            <p th:text="${n.description}"></p>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- Footer -->
+<div th:replace="fragments/footer :: footer"></div>
+
+<!-- Slideshow JS -->
+<script th:src="@{/js/slideshow.js}"></script>
+<script th:src="@{/js/login.js}"></script>
+
+<script th:inline="javascript">
+    /*<![CDATA[*/
+
+    let loginError = /*[[${param.loginError}]]*/ false;
+    let registered = /*[[${param.registered}]]*/ false;
+    let exists = /*[[${param.exists}]]*/ false;
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+        // LOGIN ERROR → open login popup
+        if (loginError) {
+            openLogin();
+
+            setTimeout(function () {
+                document.getElementById("loginForm").reset();
+            }, 100);
+        }
+
+        // SIGNUP ERROR → open signup popup
+        if (exists) {
+            openSignup();
+        }
+
+        // SIGNUP SUCCESS → open signup popup
+        if (registered) {
+            openSignup();
+        }
+
+    });
+
+    /*]]>*/
+</script>
+
+</body>
+</html>

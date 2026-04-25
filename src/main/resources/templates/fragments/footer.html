@@ -1,0 +1,60 @@
+<div th:fragment="footer">
+
+    <footer class="footer">
+
+        <!-- TOP SECTION -->
+        <div class="footer-top">
+
+            <!-- Map -->
+            <div class="footer-section">
+                <h3>LOCATION</h3>
+                <iframe
+                        src="https://maps.google.com/maps?q=Faculty%20of%20Technology%20University%20of%20Ruhuna%20Karagoda%20Uyangoda&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                        width="250" height="150" style="border:0;">
+                </iframe>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="footer-section">
+                <h3>QUICK LINKS</h3>
+                <a href="/">HOME</a><br>
+                <a th:href="@{/about}">ABOUT US</a><br>
+                <a href="/my-bookings">CALENDER</a><br>
+                <a href="/my-bookings">BOOKING</a><br>
+                <a th:href="@{/contact}">CONTACT US</a><br>
+                <a href="#" onclick="openLogin()">SIGN UP/LOGIN</a>
+
+            </div>
+
+
+            <!-- Bank Details -->
+            <div class="footer-section">
+                <h3>PAYMENT DETAILS</h3>
+                <p>Bank: People's Bank</p>
+                <p>Account Name: Event Management System Faculty of Technology</p>
+                <p>Account No: 123-4567-890</p>
+                <p>Branch: Matara</p>
+            </div>
+
+            <!-- Contact details -->
+            <div class="footer-section">
+                <h3>CONTACT US</h3>
+                <p>Faculty of Technology,</p>
+                <p>University of Ruhuna,</p>
+                <p>Karagoda, Uyangoda,</p>
+                <p>Matara</p>
+                <p>Tele : 041 47851 452</p>
+                <p>Email : eventmamagement@fot.ruh.ac.lk</p>
+            </div>
+
+
+        </div>
+
+        <!-- BOTTOM SECTION -->
+        <div class="footer-bottom">
+            <p>Copyright @ 2026 Faculty of Technology. All rights Reserved.</p>
+        </div>
+
+    </footer>
+
+</div>

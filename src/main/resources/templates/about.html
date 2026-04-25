@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <script src="/js/login.js"></script>
+    <link rel="icon" type="image/png" th:href="@{/images/logo1.png}">
+    <title>Event Management System-About us</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<!-- Header -->
+<div th:replace="fragments/header :: header"></div>
+
+<section class="about-section">
+
+    <!-- Top Image -->
+    <div id="header">
+        <img src="/images/about.png">
+    </div>
+
+    <h1>ABOUT EVENT MANAGEMENT SYSTEM</h1>
+
+    <p class="intro">
+        This Event Management System is developed for the Faculty of Technology,
+        University of Ruhuna. It allows users to book venues and manage events easily.
+    </p>
+
+    <!-- PURPOSE -->
+    <div class="about-box">
+        <h2>OUR PURPOSE</h2>
+        <p>
+            Our goal is to simplify event booking and provide a transparent system.
+        </p>
+    </div>
+
+    <!-- ✅ DYNAMIC VENUES -->
+    <div class="venue-box">
+    <div class="about-box">
+        <h2 style="color:#b60312">AVAILABLE VENUES</h2>
+
+        <div class="venue-list">
+
+            <div class="venue-card" th:each="venue : ${venues}">
+
+                <img th:src="@{'/images/' + ${venue.imageName}}">
+
+                <h3 th:text="${venue.name}"></h3>
+
+                <p>Capacity: <span th:text="${venue.capacity}"></span></p>
+
+                <p>Price per hour : Rs. <span th:text="${venue.price}"></span></p>
+
+            </div>
+
+        </div>
+    </div>
+    </div>
+    <!-- USERS -->
+    <div class="about-box">
+        <h2>WHO CAN USE THIS SYSTEM</h2>
+        <ul>
+            <li>Internal Users (Students, Lecturers, Clubs)</li>
+            <li>External Users (Organizations, Public)</li>
+        </ul>
+    </div>
+
+</section>
+
+<!-- Footer -->
+<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

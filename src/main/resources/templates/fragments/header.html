@@ -1,0 +1,145 @@
+<div th:fragment="header">
+
+    <!-- MAIN HEADER -->
+    <div class="main-header">
+
+        <!-- Left Logo -->
+        <div class="logo-left">
+            <img src="/images/logo2.png" alt="Logo">
+        </div>
+
+        <!-- Title -->
+        <div class="title">
+            <h1>Event Management System</h1>
+            <h2>Faculty of Technology</h2>
+            <h3>University of Ruhuna</h3>
+        </div>
+
+        <!-- Right Logo -->
+        <div class="logo-right">
+            <img src="/images/logo1.png" alt="Logo">
+        </div>
+
+    </div>
+
+    <!-- NAVIGATION -->
+    <nav class="navbar">
+        <a href="/">HOME</a>
+        <a th:href="@{/about}">ABOUT US</a>
+        <a th:href="@{/calendar}">CALENDAR</a>
+        <a href="#" onclick="openLogin()">BOOKING</a>
+        <a th:href="@{/contact}">CONTACT US</a>
+        <a href="#" onclick="openLogin()">SIGN UP/LOGIN</a>
+
+    </nav>
+    <!-- LOGIN MODAL -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeLogin()">&times;</span>
+
+            <div class="modal-logos">
+                <img src="/images/logo2.png" alt="logo">
+                <img src="/images/flogo.png" alt="logo">
+            </div>
+
+
+            <h2>LOGIN</h2>
+            <form id="loginForm" action="/login" method="post">
+                <input type="text" name="email" placeholder="Username" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <button>LOGIN</button>
+                <p th:if="${param.loginError}" style="color:red;">
+                    ❌ Invalid email or password
+                </p>
+            </form>
+
+
+            <p>
+                Don't have an account?
+                <a href="#" onclick="showSignup()">Sign Up</a>
+            </p>
+        </div>
+
+
+    </div>
+    <!-- SIGNUP MODAL -->
+    <div id="signupModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeSignup()">&times;</span>
+            <div class="modal-logos">
+                <img src="/images/logo2.png" alt="logo">
+                <img src="/images/flogo.png" alt="logo">
+            </div>
+
+            <h2>SIGN UP</h2>
+
+            <!-- User Type -->
+            <div class="user-type">
+                <button onclick="showMember()">Member</button>
+                <button onclick="showPublic()">Public</button>
+            </div>
+
+            <!-- MEMBER FORM -->
+            <div id="memberForm">
+                <form action="/signup" method="post" onsubmit="return validateMember()">
+
+                    <input type="hidden" name="usertype" value="MEMBER">
+
+                    <input type="text" name="registerno" placeholder="Registration Number" required>
+                    <input type="email" name="email" placeholder="Email" required>
+                    <input type="password" name="pwd" placeholder="Password" required>
+                    <input type="password" name="confirmPwd" placeholder="Confirm Password" required>
+                    <button type="submit">REGISTER</button>
+                    <!-- Error message -->
+                    <p id="memberError" style="color:red;"></p>
+                    <!-- Backend errors (put HERE) -->
+                    <p th:if="${param.exists}" style="color:red;">
+                        ❌ Email already exists!
+                    </p>
+
+                    <p th:if="${param.registered}" style="color:green;">
+                        ✅ Registration successful!
+                    </p>
+
+                </form>
+            </div>
+
+            <!-- PUBLIC FORM -->
+            <div id="publicForm" style="display:none;">
+                <form action="/signup" method="post" onsubmit="return validatePublic()">
+
+                    <input type="hidden" name="usertype" value="PUBLIC">
+
+                    <input type="text" name="phoneno" placeholder="Phone Number" required>
+                    <input type="email" name="email" placeholder="Email" required>
+                    <input type="text" name="orgname" placeholder="Organization Name" required>
+                    <input type="password" name="pwd" placeholder="Password" required>
+                    <input type="password" name="confirmPwd" placeholder="Confirm Password" required>
+                    <button type="submit">REGISTER</button>
+                    <!-- Password mismatch error (JS) -->
+                    <p id="publicError" style="color:red;"></p>
+
+                    <!-- Backend errors (put HERE)-->
+                    <p th:if="${param.exists}" style="color:red;">
+                        ❌ Email already exists!
+                    </p>
+
+                    <p th:if="${param.registered}" style="color:green;">
+                        ✅ Registration successful!
+                    </p>
+
+                </form>
+            </div>
+
+            <p>
+                Already have an account?
+                <a href="#" onclick="showLogin()">Login</a>
+            </p>
+
+        </div>
+    </div>
+
+</div>
+
+
+
