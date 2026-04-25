@@ -907,3 +907,13 @@ button:disabled {
     opacity: 0.5;
     cursor: not-allowed;
 }
+
+/*calender*/
+#calendar {
+    max-width: 800px;
+    margin: 50px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    padding-top: 5px;
+}
