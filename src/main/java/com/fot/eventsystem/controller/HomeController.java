@@ -29,9 +29,14 @@ public class HomeController {
 
     @GetMapping("/")
     public String home(Model model) {
-            model.addAttribute("newsList", newsRepository.findAll());
-            return "home";
-        }
+
+        model.addAttribute("newsList", newsRepository.findAll());
+
+        model.addAttribute("approvedEvents",
+                bookingRepository.findByStatus("APPROVED"));
+
+        return "home";
+    }
 
 
     @GetMapping("/about")

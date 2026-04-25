@@ -45,31 +45,21 @@
 
     <div class="event-list">
 
-        <div class="event-card">
-            <img th:src="@{/images/image1.png}" alt="Event">
-            <h3>AI Workshop</h3>
-            <p>Date: 2026-05-10</p>
-            <p>Time:7.40 pm</p>
-            <p>Venue: Auditorium</p>
-            <p>Description:Tickets available in entrrance</p>
-        </div>
+        <div class="event-card" th:each="e : ${approvedEvents}">
 
-        <div class="event-card">
-            <img th:src="@{/images/image2.png}" alt="Event">
-            <h3>Robotics Expo</h3>
-            <p>Date: 2026-05-15</p>
-            <p>Time:7.40 pm</p>
-            <p>Venue: Playground</p>
-            <p>Description:Tickets available in entrrance</p>
-        </div>
+            <img th:src="@{'/uploads/' + ${e.eventImage}}" alt="Event">
 
-        <div class="event-card">
-            <img th:src="@{/images/image3.png}" alt="Event">
-            <h3>Tech Talk</h3>
-            <p>Date: 2026-05-20</p>
-            <p>Time:7.40 pm</p>
-            <p>Venue: New Building</p>
-            <p>Description:Tickets available in entrrance</p>
+            <h3 th:text="${e.eventName}"></h3>
+
+            <p>Date: <span th:text="${e.eventDate}"></span></p>
+
+            <p>Time: <span th:text="${e.eventTimeStart}"></span> -
+                <span th:text="${e.eventTimeend}"></span></p>
+
+            <p>Venue: <span th:text="${e.venue}"></span></p>
+
+            <p th:text="${e.description}"></p>
+
         </div>
 
     </div>
