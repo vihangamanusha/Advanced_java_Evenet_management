@@ -61,31 +61,26 @@
     <!-- Table -->
     <h2>Recent Booking Requests</h2>
 
-    <table>
-        <tr>
-            <th>Event Name</th>
-            <th>Venue</th>
-            <th>Date</th>
-            <th>Status</th>
-        </tr>
+        <table border="1" style="margin-left: 130px ;width: 80%">
+            <tr>
+                <th>Event Name</th>
+                <th>Venue</th>
+                <th>Date</th>
+                <th>Status</th>
 
-        <tr>
-            <td>AI Workshop</td>
-            <td>Auditorium</td>
-            <td>2026-05-10</td>
-            <td>Pending</td>
-        </tr>
+            </tr>
 
-        <tr>
-            <td>Tech Talk</td>
-            <td>Playground</td>
-            <td>2026-05-15</td>
-            <td>Approved</td>
-        </tr>
+            <tr th:each="b : ${bookings}">
+                <td th:text="${b.eventName}"></td>
+                <td th:text="${b.venue}"></td>
+                <td th:text="${b.eventDate}"></td>
+                <td th:text="${b.status}"></td>
 
-    </table>
+            </tr>
 
-</div>
+        </table>
+
+
 
 </body>
 </html>
