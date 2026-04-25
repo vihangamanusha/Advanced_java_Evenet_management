@@ -447,6 +447,7 @@ td, th {
     font-size: 14px;
     cursor: pointer;
     transition: 0.3s ease;
+    width: 80px;
 }
 
 .update-btn:hover {
