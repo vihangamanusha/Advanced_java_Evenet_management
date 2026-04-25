@@ -814,9 +814,16 @@ td, th {
 /* INPUT STYLING */
 .left-section input,
 .right-section input,
-.left-section textarea,
-.left-section select{
+.left-section textarea{
     width: 95%;
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.left-section select{
+    width: 100%;
     padding: 10px;
     margin: 8px 0;
     border-radius: 5px;

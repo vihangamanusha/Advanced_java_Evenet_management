@@ -26,7 +26,7 @@ public class BookingController {
             @RequestParam int peopleCount,
             @RequestParam String venue,
             @RequestParam String description,
-            @RequestParam String price,
+            @RequestParam(required = false) String price,
             @RequestParam("eventImage") MultipartFile eventImage,
             @RequestParam("bankSlip") MultipartFile bankSlip,
             HttpSession session
@@ -43,13 +43,17 @@ public class BookingController {
         File dir = new File(uploadDir);
         if (!dir.exists()) dir.mkdirs();
 
-        // save event image
-        String eventImageName = System.currentTimeMillis() + "_" + eventImage.getOriginalFilename();
-        eventImage.transferTo(new File(uploadDir + eventImageName));
+        String eventImageName = "";
+        if (!eventImage.isEmpty()) {
+            eventImageName = System.currentTimeMillis() + "_" + eventImage.getOriginalFilename();
+            eventImage.transferTo(new File(uploadDir + eventImageName));
+        }
 
-        // save bank slip
-        String bankSlipName = System.currentTimeMillis() + "_" + bankSlip.getOriginalFilename();
-        bankSlip.transferTo(new File(uploadDir + bankSlipName));
+        String bankSlipName = "";
+        if (!bankSlip.isEmpty()) {
+            bankSlipName = System.currentTimeMillis() + "_" + bankSlip.getOriginalFilename();
+            bankSlip.transferTo(new File(uploadDir + bankSlipName));
+        }
 
         Booking booking = new Booking();
 
@@ -65,7 +69,7 @@ public class BookingController {
         booking.setEventImage(eventImageName);
         booking.setBankSlip(bankSlipName);
 
-        booking.setUserEmail(user.getEmail()); // 🔥 link to user
+        booking.setUserEmail(user.getEmail()); // ✅ NOW WORKS
 
         bookingRepository.save(booking);
 

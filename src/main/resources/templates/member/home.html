@@ -61,14 +61,14 @@
                 <input type="date" name="eventDate" required>
 
                 <label>Event Start :</label>
-                <input type="time" name="eventTimeStart" required>
+                <input type="time" name="eventTimeStart" id="startTime" onchange="calculatePrice()"required>
 
                 <label>Event End :</label>
-                <input type="time" name="eventTimeend" required>
+                <input type="time" name="eventTimeend" id="endTime" onchange="calculatePrice()"required>
 
                 <input type="number" name="peopleCount" placeholder="Number of People" required>
 
-                <select name="venue" required>
+                <select name="venue" id="venue" onchange="calculatePrice()"required>
                     <option value="">-- Select Venue --</option>
 
                     <option th:each="v : ${venues}"
@@ -80,8 +80,7 @@
 
                 <textarea name="description" placeholder="Event Description" rows="4" required></textarea>
 
-                <!-- PRICE -->
-                <input type="text" name="price" placeholder="Total Price" readonly>
+
 
             </div>
 
@@ -89,7 +88,38 @@
             <div class="right-section">
 
 
+                <!-- PRICE -->
+                <input type="text" id="price" name="price" placeholder="Total Price" readonly>
+                <script>
+                    function calculatePrice() {
+                        let start = document.getElementById("startTime").value;
+                        let end = document.getElementById("endTime").value;
+                        let venue = document.getElementById("venue").value;
 
+                        if (!start || !end || !venue) return;
+
+                        // convert time to hours
+                        let startTime = new Date("1970-01-01T" + start + ":00");
+                        let endTime = new Date("1970-01-01T" + end + ":00");
+
+                        let diff = (endTime - startTime) / (1000 * 60 * 60);
+
+                        if (diff <= 0) {
+                            document.getElementById("price").value = "Invalid Time";
+                            return;
+                        }
+
+                        // venue pricing
+                        let rate = 0;
+
+                        if (venue === "HallA") rate = 1000;
+                        if (venue === "HallB") rate = 1500;
+
+                        let price = diff * rate;
+
+                        document.getElementById("price").value = price;
+                    }
+                </script>
                 <!-- IMAGE -->
                 <label>Upload Event Image :</label>
                 <input type="file" name="eventImage" accept="image/*">
