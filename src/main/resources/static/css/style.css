@@ -863,3 +863,45 @@ button:hover {
 .booking-container h1{
     text-align: center;
 }
+
+/*admin booking page*/
+.status-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-approve {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-approve:hover {
+    background-color: #218838;
+}
+
+.btn-reject {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-reject:hover {
+    background-color: #c82333;
+}
+
+/* disabled state */
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}

@@ -30,9 +30,12 @@
 </div>
 
 <!-- Main Content -->
-<h2>Recent Booking Requests</h2>
+<div class="border">
+    <h1 style="padding-left: 270px">RECENT BOOKING REQUESTS</h1>
+</div>
 
-<table border="1">
+
+<table border="1" style="padding-left: 250px ;width: 45%">
     <tr>
         <th>Event Name</th>
         <th>Venue</th>
@@ -48,15 +51,29 @@
 
         <td th:text="${b.status}"></td>
 
-        <td>
-            <form th:action="@{'/admin/approve/' + ${b.id}}" method="post" style="display:inline;">
-                <button type="submit" style="background:green;color:white;">Approve</button>
-            </form>
 
-            <form th:action="@{'/admin/reject/' + ${b.id}}" method="post" style="display:inline;">
-                <button type="submit" style="background:red;color:white;">Reject</button>
-            </form>
+        <td>
+            <div class="status-buttons">
+
+                <form th:action="@{'/admin/approve/' + ${b.id}}" method="post" style="display:inline;">
+                    <button type="submit"
+                            class="btn-approve"
+                            th:disabled="${b.status == 'APPROVED'}">
+                        Approve
+                    </button>
+                </form>
+
+                <form th:action="@{'/admin/reject/' + ${b.id}}" method="post" style="display:inline;">
+                    <button type="submit"
+                            class="btn-reject"
+                            th:disabled="${b.status == 'REJECTED'}">
+                        Reject
+                    </button>
+                </form>
+
+            </div>
         </td>
+
     </tr>
 
 </table>

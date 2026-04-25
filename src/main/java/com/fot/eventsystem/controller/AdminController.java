@@ -11,21 +11,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/admin")
 public class AdminController {
 
-    @GetMapping("/dashboard")
-    public String dashboard() {
-        return "admin/dashboard";
-    }
-
     @Autowired
     private BookingRepository bookingRepository;
 
-
+    @GetMapping("/dashboard")
     public String adminDashboard(Model model) {
 
         int total = (int) bookingRepository.count();
-        int approved = (int) bookingRepository.countByStatus("APPROVED");
-        int pending = (int) bookingRepository.countByStatus("PENDING");
-        int rejected = (int) bookingRepository.countByStatus("REJECTED");
+        int approved = bookingRepository.countByStatus("APPROVED");
+        int pending = bookingRepository.countByStatus("PENDING");
+        int rejected = bookingRepository.countByStatus("REJECTED");
 
         model.addAttribute("total", total);
         model.addAttribute("approved", approved);
@@ -38,7 +33,10 @@ public class AdminController {
     }
 
     @GetMapping("/booking-request")
-    public String bookingRequestPage() {
-        return "admin/booking-request"; // optional page
+    public String bookingRequestPage(Model model) {
+
+        model.addAttribute("bookings", bookingRepository.findAll());
+
+        return "admin/booking-request";
     }
 }
