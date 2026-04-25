@@ -23,17 +23,19 @@ public class AuthController {
 
         if (user != null) {
 
-            // 🔥 SAVE USER IN SESSION
+            // 🔥 SAVE USER IN SESSION (ONLY ONCE)
             session.setAttribute("loggedUser", user);
 
             // 🔥 ROLE BASED REDIRECT
-            if ("ADMIN".equals(user.getUsertype())) {
+            if ("ADMIN".equalsIgnoreCase(user.getUsertype())) {
                 return "redirect:/admin/dashboard";
-            } else if ("MEMBER".equals(user.getUsertype())) {
-                return "redirect:/member/home";
-            } else {
-                return "redirect:/public/home";
             }
+
+            if ("MEMBER".equalsIgnoreCase(user.getUsertype())) {
+                return "redirect:/member/home";
+            }
+
+            return "redirect:/public/home";
 
         } else {
             return "redirect:/?loginError=true";

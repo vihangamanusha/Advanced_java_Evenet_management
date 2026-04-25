@@ -12,23 +12,21 @@ import org.springframework.ui.Model;
 public class MemberController {
     @Autowired
     private VenueRepository venueRepository;
-    
+
     @GetMapping("/member/home")
     public String memberHome(HttpSession session, Model model) {
 
         User user = (User) session.getAttribute("loggedUser");
 
         if (user == null) {
-            return "redirect:/?loginError=true";
-        }
-
-        //  restrict access
-        if (!"MEMBER".equals(user.getUsertype())) {
-            return "redirect:/"; // not allowed
+            return "redirect:/";
         }
 
         model.addAttribute("user", user);
+
+        // 🔥 ADD THIS (IMPORTANT)
         model.addAttribute("venues", venueRepository.findAll());
+
         return "member/home";
     }
 }

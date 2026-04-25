@@ -27,34 +27,51 @@ public class BookingController {
             @RequestParam String venue,
             @RequestParam String description,
             @RequestParam(required = false) String price,
-            @RequestParam("eventImage") MultipartFile eventImage,
-            @RequestParam("bankSlip") MultipartFile bankSlip,
+            @RequestParam(value = "eventImage", required = false) MultipartFile eventImage,
+            @RequestParam(value = "bankSlip", required = false) MultipartFile bankSlip,
             HttpSession session
     ) throws Exception {
+
+        System.out.println("🔥 Booking started");
 
         User user = (User) session.getAttribute("loggedUser");
 
         if (user == null) {
+            System.out.println("❌ No user in session");
             return "redirect:/?loginError=true";
         }
 
-        String uploadDir = "src/main/resources/static/images/";
+        System.out.println("✅ User: " + user.getEmail());
 
+        if (price == null || price.isEmpty()) {
+            price = "0";
+        }
+
+        String uploadDir = System.getProperty("user.dir") + "/uploads/";
         File dir = new File(uploadDir);
-        if (!dir.exists()) dir.mkdirs();
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
 
-        String eventImageName = "";
-        if (!eventImage.isEmpty()) {
+        // ================= IMAGE =================
+        String eventImageName = null;
+
+        if (eventImage != null && !eventImage.isEmpty()) {
             eventImageName = System.currentTimeMillis() + "_" + eventImage.getOriginalFilename();
-            eventImage.transferTo(new File(uploadDir + eventImageName));
+            File imageFile = new File(uploadDir + eventImageName);
+            eventImage.transferTo(imageFile);
         }
 
-        String bankSlipName = "";
-        if (!bankSlip.isEmpty()) {
+        // ================= BANK SLIP =================
+        String bankSlipName = null;
+
+        if (bankSlip != null && !bankSlip.isEmpty()) {
             bankSlipName = System.currentTimeMillis() + "_" + bankSlip.getOriginalFilename();
-            bankSlip.transferTo(new File(uploadDir + bankSlipName));
+            File slipFile = new File(uploadDir + bankSlipName);
+            bankSlip.transferTo(slipFile);
         }
 
+        // ================= SAVE BOOKING =================
         Booking booking = new Booking();
 
         booking.setEventName(eventName);
@@ -65,13 +82,14 @@ public class BookingController {
         booking.setVenue(venue);
         booking.setDescription(description);
         booking.setPrice(price);
-
         booking.setEventImage(eventImageName);
         booking.setBankSlip(bankSlipName);
+        booking.setUserEmail(user.getEmail());
 
-        booking.setUserEmail(user.getEmail()); // ✅ NOW WORKS
-
+        System.out.println("💾 Saving to DB...");
         bookingRepository.save(booking);
+
+        System.out.println("✅ Saved successfully!");
 
         return "redirect:/member/home?success=true";
     }
