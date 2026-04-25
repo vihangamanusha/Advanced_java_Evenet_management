@@ -7,8 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/admin")
@@ -57,5 +61,25 @@ public class AdminController {
     @GetMapping("/calendar")
     public String calendarPage() {
         return "admin/calendar";
+    }
+
+    @GetMapping("/calendar-events")
+    @ResponseBody
+    public List<Map<String, Object>> getCalendarEvents() {
+
+        List<Booking> approved = bookingRepository.findByStatusIgnoreCase("APPROVED");
+
+        List<Map<String, Object>> events = new ArrayList<>();
+
+        for (Booking b : approved) {
+            Map<String, Object> event = new HashMap<>();
+
+            event.put("title", b.getEventName());
+            event.put("start", b.getEventDate()); // must be YYYY-MM-DD
+
+            events.add(event);
+        }
+
+        return events;
     }
 }
