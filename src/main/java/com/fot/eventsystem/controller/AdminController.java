@@ -1,6 +1,8 @@
 package com.fot.eventsystem.controller;
 
 import com.fot.eventsystem.model.Booking;
+import com.fot.eventsystem.model.User;
+import com.fot.eventsystem.repository.UserRepository;
 import org.springframework.ui.Model;
 import com.fot.eventsystem.repository.BookingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,4 +84,5 @@ public class AdminController {
 
         return events;
     }
+
 }

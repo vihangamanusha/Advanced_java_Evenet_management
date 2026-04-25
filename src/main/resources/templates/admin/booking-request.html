@@ -37,6 +37,8 @@
 
 <table border="1" style="margin-left: 250px ;width: 100%">
     <tr>
+        <th>User Name</th>
+        
         <th>Event Name</th>
         <th>Venue</th>
         <th>Description</th>
@@ -45,7 +47,6 @@
         <th>Event Time End</th>
         <th>Event Image</th>
         <th>Count</th>
-        <th>User Name</th>
         <th>Price</th>
         <th>Bank Slip</th>
         <th>Status</th>
@@ -53,6 +54,8 @@
     </tr>
 
     <tr th:each="b : ${bookings}">
+        <td th:text="${b.userEmail}"></td>
+
         <td th:text="${b.eventName}"></td>
         <td th:text="${b.venue}"></td>
         <td th:text="${b.description}"></td>
@@ -65,7 +68,7 @@
                  style="width:80px; height:60px; object-fit:cover; border-radius:5px;">
         </td>
         <td th:text="${b.peopleCount}"></td>
-        <td th:text="${b.userEmail}"></td>
+
         <td th:text="${b.price}"></td>
         <td>
             <img th:src="@{'/uploads/'+${b.bankSlip}}"
