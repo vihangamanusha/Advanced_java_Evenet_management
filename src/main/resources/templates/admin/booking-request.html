@@ -35,7 +35,7 @@
 </div>
 
 
-<table border="1" style="margin-left: 250px ;width: 45%">
+<table border="1" style="margin-left: 250px ;width: 100%">
     <tr>
         <th>Event Name</th>
         <th>Venue</th>
@@ -59,11 +59,19 @@
         <td th:text="${b.eventDate}"></td>
         <td th:text="${b.eventTimeStart}"></td>
         <td th:text="${b.eventTimeend}"></td>
-        <td th:text="${b.eventImage}"></td>
+        <td>
+            <img th:src="@{'/uploads/'+${b.eventImage}}"
+                 alt="Event Image"
+                 style="width:80px; height:60px; object-fit:cover; border-radius:5px;">
+        </td>
         <td th:text="${b.peopleCount}"></td>
         <td th:text="${b.userEmail}"></td>
         <td th:text="${b.price}"></td>
-        <td th:text="${b.bankSlip}"></td>
+        <td>
+            <img th:src="@{'/uploads/'+${b.bankSlip}}"
+                 alt="Bank Slip"
+                 style="width:80px; height:60px; object-fit:cover; border-radius:5px;">
+        </td>
 
 
         <td th:text="${b.status}"></td>
