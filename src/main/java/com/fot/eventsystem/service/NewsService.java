@@ -1,4 +1,4 @@
 package com.fot.eventsystem.service;
 
-public class PosterService {
+public class NewsService {
 }

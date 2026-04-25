@@ -1,4 +1,4 @@
 package com.fot.eventsystem.service;
 
-public class FileService {
+public class FeedbackService {
 }

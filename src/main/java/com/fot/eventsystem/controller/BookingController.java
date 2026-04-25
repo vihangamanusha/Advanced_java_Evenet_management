@@ -1,12 +1,12 @@
 package com.fot.eventsystem.controller;
 
-import org.springframework.ui.Model;
 import com.fot.eventsystem.model.Booking;
 import com.fot.eventsystem.model.User;
-import com.fot.eventsystem.repository.BookingRepository;
+import com.fot.eventsystem.service.BookingService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -17,7 +17,7 @@ import java.util.List;
 public class BookingController {
 
     @Autowired
-    private BookingRepository bookingRepository;
+    private BookingService bookingService;
 
     @PostMapping("/book")
     public String saveBooking(
@@ -34,16 +34,11 @@ public class BookingController {
             HttpSession session
     ) throws Exception {
 
-        System.out.println("🔥 Booking started");
-
         User user = (User) session.getAttribute("loggedUser");
 
         if (user == null) {
-            System.out.println("❌ No user in session");
             return "redirect:/?loginError=true";
         }
-
-        System.out.println("✅ User: " + user.getEmail());
 
         if (price == null || price.isEmpty()) {
             price = "0";
@@ -55,27 +50,22 @@ public class BookingController {
             dir.mkdirs();
         }
 
-        // ================= IMAGE =================
+        // IMAGE
         String eventImageName = null;
-
         if (eventImage != null && !eventImage.isEmpty()) {
             eventImageName = System.currentTimeMillis() + "_" + eventImage.getOriginalFilename();
-            File imageFile = new File(uploadDir + eventImageName);
-            eventImage.transferTo(imageFile);
+            eventImage.transferTo(new File(uploadDir + eventImageName));
         }
 
-        // ================= BANK SLIP =================
+        // BANK SLIP
         String bankSlipName = null;
-
         if (bankSlip != null && !bankSlip.isEmpty()) {
             bankSlipName = System.currentTimeMillis() + "_" + bankSlip.getOriginalFilename();
-            File slipFile = new File(uploadDir + bankSlipName);
-            bankSlip.transferTo(slipFile);
+            bankSlip.transferTo(new File(uploadDir + bankSlipName));
         }
 
-        // ================= SAVE BOOKING =================
+        // CREATE MODEL
         Booking booking = new Booking();
-
         booking.setEventName(eventName);
         booking.setEventDate(eventDate);
         booking.setEventTimeStart(eventTimeStart);
@@ -88,10 +78,8 @@ public class BookingController {
         booking.setBankSlip(bankSlipName);
         booking.setUserEmail(user.getEmail());
 
-        System.out.println("💾 Saving to DB...");
-        bookingRepository.save(booking);
-
-        System.out.println("✅ Saved successfully!");
+        // SAVE USING SERVICE
+        bookingService.saveBooking(booking);
 
         return "redirect:/member/home?success=true";
     }
@@ -106,7 +94,7 @@ public class BookingController {
         }
 
         List<Booking> bookings =
-                bookingRepository.findByUserEmail(user.getEmail());
+                bookingService.getBookingsByUserEmail(user.getEmail());
 
         model.addAttribute("bookings", bookings);
 
