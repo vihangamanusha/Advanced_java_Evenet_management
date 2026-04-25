@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="icon" type="image/png" th:href="@{/images/logo1.png}">
+    <title>Event Management System-Admin</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body style="background-color: #e1e0e0; ">
+
+<!-- Sidebar -->
+<div class="sidebar">
+    <div class="modal-logos">
+        <img src="/images/logo2.png" alt="logo">
+        <img src="/images/flogo.png" alt="logo">
+    </div>
+
+    <h2>ADMIN </h2>
+
+    <a href="#">DASHBOARD</a>
+    <a href="#">CALENDER</a>
+    <a th:href="@{/admin/request}">BOOKING REQUEST</a>
+    <a href="#">APPROVED EVENTS</a>
+    <a th:href="@{/admin/venues}">MANAGE VENUES</a>
+    <a th:href="@{/admin/users}">MANAGE USERS</a>
+    <a th:href="@{/admin/feedback}">FEEDBACK LIST</a>
+    <a th:href="@{/admin/news}">LATEST NEWS</a><br><br><br>
+
+    <a th:href="@{/}">LOGOUT</a>
+
+</div>
+
+<!-- Main Content -->
+<h2>Recent Booking Requests</h2>
+
+<table border="1">
+    <tr>
+        <th>Event Name</th>
+        <th>Venue</th>
+        <th>Date</th>
+        <th>Status</th>
+        <th>Action</th>
+    </tr>
+
+    <tr th:each="b : ${bookings}">
+        <td th:text="${b.eventName}"></td>
+        <td th:text="${b.venue}"></td>
+        <td th:text="${b.eventDate}"></td>
+
+        <td th:text="${b.status}"></td>
+
+        <td>
+            <form th:action="@{'/admin/approve/' + ${b.id}}" method="post" style="display:inline;">
+                <button type="submit" style="background:green;color:white;">Approve</button>
+            </form>
+
+            <form th:action="@{'/admin/reject/' + ${b.id}}" method="post" style="display:inline;">
+                <button type="submit" style="background:red;color:white;">Reject</button>
+            </form>
+        </td>
+    </tr>
+
+</table>
+
+</body>
+</html>

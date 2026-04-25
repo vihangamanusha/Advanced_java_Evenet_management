@@ -37,19 +37,23 @@
     <!-- Cards -->
     <div class="card-container">
 
-        <div class="card">
-            <h3>Total Requests</h3>
-            <p>25</p>
-        </div>
+        <div class="card-container">
 
-        <div class="card">
-            <h3>Approved Events</h3>
-            <p>18</p>
-        </div>
+            <div class="card">
+                <h3>Total Requests</h3>
+                <p th:text="${total}">0</p>
+            </div>
 
-        <div class="card">
-            <h3>Pending Requests</h3>
-            <p>7</p>
+            <div class="card">
+                <h3>Approved Events</h3>
+                <p th:text="${approved}">0</p>
+            </div>
+
+            <div class="card">
+                <h3>Pending Requests</h3>
+                <p th:text="${pending}">0</p>
+            </div>
+
         </div>
 
     </div>

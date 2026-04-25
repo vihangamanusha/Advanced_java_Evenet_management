@@ -23,7 +23,17 @@ public class Booking {
 
     private String eventImage;
     private String bankSlip;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     private String userEmail;
+    private String status;
 
     public int getId() {
         return id;
