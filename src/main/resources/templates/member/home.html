@@ -68,11 +68,12 @@
 
                 <input type="number" name="peopleCount" placeholder="Number of People" required>
 
-                <select name="venue" id="venue" onchange="calculatePrice()"required>
+                <select name="venue" id="venue" onchange="calculatePrice()" required>
+
                     <option value="">-- Select Venue --</option>
 
                     <option th:each="v : ${venues}"
-                            th:value="${v.name}"
+                            th:value="${v.price}"
                             th:text="${v.name}">
                     </option>
 
