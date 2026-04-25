@@ -43,11 +43,13 @@
 
 <h2>Approved Events</h2>
 
-<table border="1">
+<table border="1" style="width: 60% ; margin-left: 250px">
     <tr>
         <th>Event Name</th>
         <th>Venue</th>
         <th>Date</th>
+        <th>Start Time</th>
+        <th>End Time</th>
         <th>User</th>
 
     </tr>
@@ -56,6 +58,8 @@
         <td th:text="${b.eventName}"></td>
         <td th:text="${b.venue}"></td>
         <td th:text="${b.eventDate}"></td>
+        <td th:text="${b.eventTimeStart}"></td>
+        <td th:text="${b.eventTimeend}"></td>
         <td th:text="${b.userEmail}"></td>
 
     </tr>
