@@ -74,7 +74,7 @@
                 <td th:text="${b.eventName}"></td>
                 <td th:text="${b.venue}"></td>
                 <td th:text="${b.eventDate}"></td>
-                <td th:text="${b.status}"></td>
+                <td th:text="${b.status != null ? b.status : 'PENDING'}"></td>
 
             </tr>
 
