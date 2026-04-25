@@ -10,4 +10,5 @@ public interface BookingRepository extends JpaRepository<Booking, Integer> {
         int countByStatus(String status);
         List<Booking> findByStatusIgnoreCase(String status);
         List<Booking> findByStatus(String status);
+        List<Booking> findByUserEmail(String userEmail);
 }

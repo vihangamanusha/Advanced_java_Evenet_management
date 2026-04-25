@@ -1,5 +1,6 @@
 package com.fot.eventsystem.controller;
 
+import org.springframework.ui.Model;
 import com.fot.eventsystem.model.Booking;
 import com.fot.eventsystem.model.User;
 import com.fot.eventsystem.repository.BookingRepository;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.util.List;
 
 @Controller
 public class BookingController {
@@ -92,5 +94,22 @@ public class BookingController {
         System.out.println("✅ Saved successfully!");
 
         return "redirect:/member/home?success=true";
+    }
+
+    @GetMapping("/my-bookings")
+    public String myBookings(HttpSession session, Model model) {
+
+        User user = (User) session.getAttribute("loggedUser");
+
+        if (user == null) {
+            return "redirect:/";
+        }
+
+        List<Booking> bookings =
+                bookingRepository.findByUserEmail(user.getEmail());
+
+        model.addAttribute("bookings", bookings);
+
+        return "my-bookings";
     }
 }
