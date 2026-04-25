@@ -16,7 +16,7 @@
 
     <h2>ADMIN </h2>
 
-    <a href="#">DASHBOARD</a>
+    <a th:href="@{/admin/dashboard}">DASHBOARD</a>
     <a href="#">CALENDER</a>
     <a th:href="@{/admin/request}">BOOKING REQUEST</a>
     <a href="#">APPROVED EVENTS</a>
@@ -39,7 +39,15 @@
     <tr>
         <th>Event Name</th>
         <th>Venue</th>
+        <th>Description</th>
         <th>Date</th>
+        <th>Event Time Start</th>
+        <th>Event Time End</th>
+        <th>Event Image</th>
+        <th>Count</th>
+        <th>User Name</th>
+        <th>Price</th>
+        <th>Bank Slip</th>
         <th>Status</th>
         <th>Action</th>
     </tr>
@@ -47,7 +55,16 @@
     <tr th:each="b : ${bookings}">
         <td th:text="${b.eventName}"></td>
         <td th:text="${b.venue}"></td>
+        <td th:text="${b.description}"></td>
         <td th:text="${b.eventDate}"></td>
+        <td th:text="${b.eventTimeStart}"></td>
+        <td th:text="${b.eventTimeend}"></td>
+        <td th:text="${b.eventImage}"></td>
+        <td th:text="${b.peopleCount}"></td>
+        <td th:text="${b.userEmail}"></td>
+        <td th:text="${b.price}"></td>
+        <td th:text="${b.bankSlip}"></td>
+
 
         <td th:text="${b.status}"></td>
 
