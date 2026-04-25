@@ -53,4 +53,9 @@ public class AdminController {
 
         return "admin/approved-events";
     }
+
+    @GetMapping("/calendar")
+    public String calendarPage() {
+        return "admin/calendar";
+    }
 }
