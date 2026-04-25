@@ -15,11 +15,9 @@ public class AdminBookingController {
 
     // 🔹 SHOW ALL BOOKINGS
     @GetMapping("/admin/request")
-    public String viewRequests(Model model) {
-
+    public String requestPage(Model model) {
         model.addAttribute("bookings", bookingRepository.findAll());
-
-        return "admin/request"; // your HTML page
+        return "admin/request";
     }
 
     // 🔹 APPROVE
@@ -33,7 +31,7 @@ public class AdminBookingController {
             bookingRepository.save(booking);
         }
 
-        return "redirect:/admin/request";
+        return "redirect:/admin/booking-request";
     }
 
     // 🔹 REJECT
@@ -47,6 +45,6 @@ public class AdminBookingController {
             bookingRepository.save(booking);
         }
 
-        return "redirect:/admin/request";
+        return "redirect:/admin/booking-request";
     }
 }
