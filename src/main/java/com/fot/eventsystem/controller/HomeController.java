@@ -45,6 +45,25 @@ public class HomeController {
         return "calendar";
     }
 
+    @GetMapping("/calendar-events")
+    @ResponseBody
+    public List<Map<String, Object>> getPublicCalendarEvents() {
+
+        List<Booking> approved = bookingRepository.findByStatusIgnoreCase("APPROVED");
+
+        List<Map<String, Object>> events = new ArrayList<>();
+
+        for (Booking b : approved) {
+            Map<String, Object> event = new HashMap<>();
+
+            event.put("title", b.getEventName());
+            event.put("start", b.getEventDate()); // YYYY-MM-DD
+
+            events.add(event);
+        }
+
+        return events;
+    }
 
 
 

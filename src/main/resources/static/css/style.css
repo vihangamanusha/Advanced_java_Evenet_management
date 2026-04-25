@@ -911,9 +911,15 @@ button:disabled {
 /*calender*/
 #calendar {
     max-width: 800px;
-    margin: 50px auto;
+    /*margin: 50px auto;*/
     background: white;
     padding: 20px;
     border-radius: 10px;
     padding-top: 5px;
+}
+
+/*public calender*/
+.calender-content{
+    padding-left: 100px;
+    background-color: #e2e1e5;
 }

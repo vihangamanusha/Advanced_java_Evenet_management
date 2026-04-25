@@ -86,6 +86,11 @@
       </td>
 
       <td>
+        <a th:href="@{'/admin/venues/edit/' + ${venue.id}}"
+           class="btn-edit">
+          Edit
+        </a>
+        
         <a th:href="@{'/admin/venues/delete/' + ${venue.id}}"
            class="btn-delete"
            onclick="return confirm('Delete this venue?')">
