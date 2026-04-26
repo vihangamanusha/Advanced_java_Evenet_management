@@ -10,22 +10,27 @@ import org.springframework.ui.Model;
 
 @Controller
 public class MemberController {
+
     @Autowired
     private VenueRepository venueRepository;
 
     @GetMapping("/member/home")
     public String memberHome(HttpSession session, Model model) {
 
-        User user = (User) session.getAttribute("loggedUser");
+        try {
+            User user = (User) session.getAttribute("loggedUser");
 
-        if (user == null) {
-            return "redirect:/";
+            if (user == null) {
+                return "redirect:/";
+            }
+
+            model.addAttribute("user", user);
+            model.addAttribute("venues", venueRepository.findAll());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "redirect:/?error=true";
         }
-
-        model.addAttribute("user", user);
-
-
-        model.addAttribute("venues", venueRepository.findAll());
 
         return "member/home";
     }

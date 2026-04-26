@@ -17,18 +17,21 @@ public class PublicController {
     @GetMapping("/public/home")
     public String publicHome(HttpSession session, Model model) {
 
-        User user = (User) session.getAttribute("loggedUser");
+        try {
+            User user = (User) session.getAttribute("loggedUser");
 
-        // if not logged in go home
-        if (user == null) {
-            return "redirect:/";
+            // if not logged in
+            if (user == null) {
+                return "redirect:/";
+            }
+
+            model.addAttribute("user", user);
+            model.addAttribute("venues", venueRepository.findAll());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "redirect:/?error=true";
         }
-
-        // send user to page
-        model.addAttribute("user", user);
-
-        // send venues (for booking form dropdown)
-        model.addAttribute("venues", venueRepository.findAll());
 
         return "public/home";
     }

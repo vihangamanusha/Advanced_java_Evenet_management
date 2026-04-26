@@ -33,73 +33,85 @@ public class BookingController {
             @RequestParam(value = "eventImage", required = false) MultipartFile eventImage,
             @RequestParam(value = "bankSlip", required = false) MultipartFile bankSlip,
             HttpSession session
-    ) throws Exception {
+    ) {
 
-        User user = (User) session.getAttribute("loggedUser");
+        try {
 
-        if (user == null) {
-            return "redirect:/?loginError=true";
+            User user = (User) session.getAttribute("loggedUser");
+
+            if (user == null) {
+                return "redirect:/?loginError=true";
+            }
+
+            if (price == null || price.isEmpty()) {
+                price = "0";
+            }
+
+            // upload folder
+            String uploadDir = System.getProperty("user.dir") + "/uploads/";
+            File dir = new File(uploadDir);
+            if (!dir.exists()) {
+                dir.mkdirs();
+            }
+
+            // EVENT IMAGE
+            String eventImageName = null;
+            if (eventImage != null && !eventImage.isEmpty()) {
+                eventImageName = System.currentTimeMillis() + "_" + eventImage.getOriginalFilename();
+                eventImage.transferTo(new File(uploadDir + eventImageName));
+            }
+
+            // BANK SLIP
+            String bankSlipName = null;
+            if (bankSlip != null && !bankSlip.isEmpty()) {
+                bankSlipName = System.currentTimeMillis() + "_" + bankSlip.getOriginalFilename();
+                bankSlip.transferTo(new File(uploadDir + bankSlipName));
+            }
+
+            // CREATE BOOKING (Factory)
+            Booking booking = BookingFactory.createBooking(
+                    eventName,
+                    eventDate,
+                    eventTimeStart,
+                    eventTimeend,
+                    peopleCount,
+                    venue,
+                    description,
+                    price,
+                    eventImageName,
+                    bankSlipName,
+                    user.getEmail()
+            );
+
+            bookingService.saveBooking(booking);
+
+            return "redirect:/member/home?success=true";
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "redirect:/member/home?error=true";
         }
-
-        if (price == null || price.isEmpty()) {
-            price = "0";
-        }
-
-        // upload folder
-        String uploadDir = System.getProperty("user.dir") + "/uploads/";
-        File dir = new File(uploadDir);
-        if (!dir.exists()) {
-            dir.mkdirs();
-        }
-
-        // EVENT IMAGE
-        String eventImageName = null;
-        if (eventImage != null && !eventImage.isEmpty()) {
-            eventImageName = System.currentTimeMillis() + "_" + eventImage.getOriginalFilename();
-            eventImage.transferTo(new File(uploadDir + eventImageName));
-        }
-
-        // BANK SLIP
-        String bankSlipName = null;
-        if (bankSlip != null && !bankSlip.isEmpty()) {
-            bankSlipName = System.currentTimeMillis() + "_" + bankSlip.getOriginalFilename();
-            bankSlip.transferTo(new File(uploadDir + bankSlipName));
-        }
-
-        // USING FACTORY HERE
-        Booking booking = BookingFactory.createBooking(
-                eventName,
-                eventDate,
-                eventTimeStart,
-                eventTimeend,
-                peopleCount,
-                venue,
-                description,
-                price,
-                eventImageName,
-                bankSlipName,
-                user.getEmail()
-        );
-
-        // SAVE
-        bookingService.saveBooking(booking);
-
-        return "redirect:/member/home?success=true";
     }
 
     @GetMapping("/my-bookings")
     public String myBookings(HttpSession session, Model model) {
 
-        User user = (User) session.getAttribute("loggedUser");
+        try {
+            User user = (User) session.getAttribute("loggedUser");
 
-        if (user == null) {
-            return "redirect:/";
+            if (user == null) {
+                return "redirect:/";
+            }
+
+            List<Booking> bookings =
+                    bookingService.getBookingsByUserEmail(user.getEmail());
+
+            model.addAttribute("bookings", bookings);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            model.addAttribute("error", "Unable to load bookings");
         }
-
-        List<Booking> bookings =
-                bookingService.getBookingsByUserEmail(user.getEmail());
-
-        model.addAttribute("bookings", bookings);
 
         return "my-bookings";
     }

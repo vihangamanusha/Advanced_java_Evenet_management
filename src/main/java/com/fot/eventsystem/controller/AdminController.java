@@ -1,20 +1,13 @@
 package com.fot.eventsystem.controller;
 
 import com.fot.eventsystem.model.Booking;
-import com.fot.eventsystem.model.User;
-import com.fot.eventsystem.repository.UserRepository;
-import org.springframework.ui.Model;
 import com.fot.eventsystem.repository.BookingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @RequestMapping("/admin")
@@ -26,17 +19,23 @@ public class AdminController {
     @GetMapping("/dashboard")
     public String adminDashboard(Model model) {
 
-        int total = (int) bookingRepository.count();
-        int approved = bookingRepository.countByStatus("APPROVED");
-        int pending = bookingRepository.countByStatus("PENDING");
-        int rejected = bookingRepository.countByStatus("REJECTED");
+        try {
+            int total = (int) bookingRepository.count();
+            int approved = bookingRepository.countByStatus("APPROVED");
+            int pending = bookingRepository.countByStatus("PENDING");
+            int rejected = bookingRepository.countByStatus("REJECTED");
 
-        model.addAttribute("total", total);
-        model.addAttribute("approved", approved);
-        model.addAttribute("pending", pending);
-        model.addAttribute("rejected", rejected);
+            model.addAttribute("total", total);
+            model.addAttribute("approved", approved);
+            model.addAttribute("pending", pending);
+            model.addAttribute("rejected", rejected);
 
-        model.addAttribute("bookings", bookingRepository.findAll());
+            model.addAttribute("bookings", bookingRepository.findAll());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            model.addAttribute("error", "Failed to load dashboard data");
+        }
 
         return "admin/dashboard";
     }
@@ -44,7 +43,12 @@ public class AdminController {
     @GetMapping("/booking-request")
     public String bookingRequestPage(Model model) {
 
-        model.addAttribute("bookings", bookingRepository.findAll());
+        try {
+            model.addAttribute("bookings", bookingRepository.findAll());
+        } catch (Exception e) {
+            e.printStackTrace();
+            model.addAttribute("error", "Failed to load booking requests");
+        }
 
         return "admin/booking-request";
     }
@@ -52,10 +56,16 @@ public class AdminController {
     @GetMapping("/approved-events")
     public String approvedEvents(Model model) {
 
-        List<Booking> approvedList =
-                bookingRepository.findByStatusIgnoreCase("APPROVED");
+        try {
+            List<Booking> approvedList =
+                    bookingRepository.findByStatusIgnoreCase("APPROVED");
 
-        model.addAttribute("bookings", approvedList);
+            model.addAttribute("bookings", approvedList);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            model.addAttribute("error", "Failed to load approved events");
+        }
 
         return "admin/approved-events";
     }
@@ -69,20 +79,25 @@ public class AdminController {
     @ResponseBody
     public List<Map<String, Object>> getCalendarEvents() {
 
-        List<Booking> approved = bookingRepository.findByStatusIgnoreCase("APPROVED");
-
         List<Map<String, Object>> events = new ArrayList<>();
 
-        for (Booking b : approved) {
-            Map<String, Object> event = new HashMap<>();
+        try {
+            List<Booking> approved =
+                    bookingRepository.findByStatusIgnoreCase("APPROVED");
 
-            event.put("title", b.getEventName());
-            event.put("start", b.getEventDate()); //YYYY-MM-DD
+            for (Booking b : approved) {
+                Map<String, Object> event = new HashMap<>();
 
-            events.add(event);
+                event.put("title", b.getEventName());
+                event.put("start", b.getEventDate()); // YYYY-MM-DD
+
+                events.add(event);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         return events;
     }
-
 }

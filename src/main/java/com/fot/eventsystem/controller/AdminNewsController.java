@@ -21,7 +21,14 @@ public class AdminNewsController {
     // SHOW PAGE
     @GetMapping
     public String showNewsPage(Model model) {
-        model.addAttribute("newsList", newsService.getAllNews());
+
+        try {
+            model.addAttribute("newsList", newsService.getAllNews());
+        } catch (Exception e) {
+            e.printStackTrace();
+            model.addAttribute("error", "Failed to load news");
+        }
+
         return "admin/manage-news";
     }
 
@@ -31,24 +38,29 @@ public class AdminNewsController {
             @RequestParam String title,
             @RequestParam String description,
             @RequestParam("imageFile") MultipartFile file
-    ) throws IOException {
+    ) {
 
-        String uploadDir = System.getProperty("user.dir") + "/uploads/";
+        try {
+            String uploadDir = System.getProperty("user.dir") + "/uploads/";
 
-        File dir = new File(uploadDir);
-        if (!dir.exists()) {
-            dir.mkdirs();
+            File dir = new File(uploadDir);
+            if (!dir.exists()) {
+                dir.mkdirs();
+            }
+
+            String fileName = System.currentTimeMillis() + "_" + file.getOriginalFilename();
+            file.transferTo(new File(uploadDir + fileName));
+
+            News news = new News();
+            news.setTitle(title);
+            news.setDescription(description);
+            news.setImage(fileName);
+
+            newsService.saveNews(news);
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
-        String fileName = System.currentTimeMillis() + "_" + file.getOriginalFilename();
-        file.transferTo(new File(uploadDir + fileName));
-
-        News news = new News();
-        news.setTitle(title);
-        news.setDescription(description);
-        news.setImage(fileName);
-
-        newsService.saveNews(news);
 
         return "redirect:/admin/news";
     }
@@ -57,8 +69,13 @@ public class AdminNewsController {
     @GetMapping("/edit/{id}")
     public String editNews(@PathVariable int id, Model model) {
 
-        model.addAttribute("news", newsService.getNewsById(id));
-        model.addAttribute("newsList", newsService.getAllNews());
+        try {
+            model.addAttribute("news", newsService.getNewsById(id));
+            model.addAttribute("newsList", newsService.getAllNews());
+        } catch (Exception e) {
+            e.printStackTrace();
+            model.addAttribute("error", "Failed to load news for edit");
+        }
 
         return "admin/manage-news";
     }
@@ -70,23 +87,28 @@ public class AdminNewsController {
             @RequestParam String title,
             @RequestParam String description,
             @RequestParam("imageFile") MultipartFile file
-    ) throws IOException {
+    ) {
 
-        News news = newsService.getNewsById(id);
+        try {
+            News news = newsService.getNewsById(id);
 
-        if (news != null) {
+            if (news != null) {
 
-            news.setTitle(title);
-            news.setDescription(description);
+                news.setTitle(title);
+                news.setDescription(description);
 
-            if (!file.isEmpty()) {
-                String uploadDir = System.getProperty("user.dir") + "/uploads/";
-                String fileName = System.currentTimeMillis() + "_" + file.getOriginalFilename();
-                file.transferTo(new File(uploadDir + fileName));
-                news.setImage(fileName);
+                if (!file.isEmpty()) {
+                    String uploadDir = System.getProperty("user.dir") + "/uploads/";
+                    String fileName = System.currentTimeMillis() + "_" + file.getOriginalFilename();
+                    file.transferTo(new File(uploadDir + fileName));
+                    news.setImage(fileName);
+                }
+
+                newsService.saveNews(news);
             }
 
-            newsService.saveNews(news);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         return "redirect:/admin/news";
@@ -95,7 +117,13 @@ public class AdminNewsController {
     // DELETE
     @GetMapping("/delete/{id}")
     public String deleteNews(@PathVariable int id) {
-        newsService.deleteNews(id);
+
+        try {
+            newsService.deleteNews(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         return "redirect:/admin/news";
     }
 }

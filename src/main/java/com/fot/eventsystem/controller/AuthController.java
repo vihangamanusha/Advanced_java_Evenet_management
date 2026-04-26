@@ -18,23 +18,27 @@ public class AuthController {
                         @RequestParam String password,
                         HttpSession session) {
 
-        User user = userService.login(email, password);
+        try {
+            User user = userService.login(email, password);
 
-        if (user != null) {
+            if (user == null) {
+                return "redirect:/?loginError=true";
+            }
 
             session.setAttribute("loggedUser", user);
 
-            if ("ADMIN".equalsIgnoreCase(user.getUsertype())) {
+            String role = user.getUsertype();
+
+            if ("ADMIN".equalsIgnoreCase(role)) {
                 return "redirect:/admin/dashboard";
-            }
-
-            if ("MEMBER".equalsIgnoreCase(user.getUsertype())) {
+            } else if ("MEMBER".equalsIgnoreCase(role)) {
                 return "redirect:/member/home";
+            } else {
+                return "redirect:/public/home";
             }
 
-            return "redirect:/public/home";
-
-        } else {
+        } catch (Exception e) {
+            e.printStackTrace();
             return "redirect:/?loginError=true";
         }
     }
@@ -50,24 +54,31 @@ public class AuthController {
             @RequestParam(required = false) String orgname
     ) {
 
-        if (!pwd.equals(confirmPwd)) {
-            return "redirect:/?passwordError=true";
+        try {
+
+            if (!pwd.equals(confirmPwd)) {
+                return "redirect:/?passwordError=true";
+            }
+
+            if (userService.findByEmail(email) != null) {
+                return "redirect:/?exists=true";
+            }
+
+            User user = new User();
+            user.setEmail(email);
+            user.setPassword(pwd);
+            user.setUsertype(usertype);
+            user.setRegisterno(registerno);
+            user.setPhoneno(phoneno);
+            user.setOrgname(orgname);
+
+            userService.saveUser(user);
+
+            return "redirect:/?registered=true";
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "redirect:/?error=true";
         }
-
-        if (userService.findByEmail(email) != null) {
-            return "redirect:/?exists=true";
-        }
-
-        User user = new User();
-        user.setEmail(email);
-        user.setPassword(pwd);
-        user.setUsertype(usertype);
-        user.setRegisterno(registerno);
-        user.setPhoneno(phoneno);
-        user.setOrgname(orgname);
-
-        userService.saveUser(user);
-
-        return "redirect:/?registered=true";
     }
 }

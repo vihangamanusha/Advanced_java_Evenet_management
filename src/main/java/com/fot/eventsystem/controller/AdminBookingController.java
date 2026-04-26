@@ -16,7 +16,14 @@ public class AdminBookingController {
     // show all bookings
     @GetMapping("/admin/request")
     public String requestPage(Model model) {
-        model.addAttribute("bookings", bookingRepository.findAll());
+
+        try {
+            model.addAttribute("bookings", bookingRepository.findAll());
+        } catch (Exception e) {
+            e.printStackTrace();
+            model.addAttribute("error", "Failed to load bookings");
+        }
+
         return "admin/request";
     }
 
@@ -24,25 +31,35 @@ public class AdminBookingController {
     @PostMapping("/admin/approve/{id}")
     public String approve(@PathVariable int id) {
 
-        Booking booking = bookingRepository.findById(id).orElse(null);
+        try {
+            Booking booking = bookingRepository.findById(id).orElse(null);
 
-        if (booking != null) {
-            booking.setStatus("APPROVED");
-            bookingRepository.save(booking);
+            if (booking != null) {
+                booking.setStatus("APPROVED");
+                bookingRepository.save(booking);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         return "redirect:/admin/booking-request";
     }
 
-    //rejct
+    // reject
     @PostMapping("/admin/reject/{id}")
     public String reject(@PathVariable int id) {
 
-        Booking booking = bookingRepository.findById(id).orElse(null);
+        try {
+            Booking booking = bookingRepository.findById(id).orElse(null);
 
-        if (booking != null) {
-            booking.setStatus("REJECTED");
-            bookingRepository.save(booking);
+            if (booking != null) {
+                booking.setStatus("REJECTED");
+                bookingRepository.save(booking);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         return "redirect:/admin/booking-request";

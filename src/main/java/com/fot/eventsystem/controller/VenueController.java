@@ -20,7 +20,14 @@ public class VenueController {
     // SHOW ALL
     @GetMapping
     public String showVenues(Model model) {
-        model.addAttribute("venues", venueService.getAllVenues());
+
+        try {
+            model.addAttribute("venues", venueService.getAllVenues());
+        } catch (Exception e) {
+            e.printStackTrace();
+            model.addAttribute("venues", java.util.List.of());
+        }
+
         return "admin/manage-venues";
     }
 
@@ -38,8 +45,14 @@ public class VenueController {
             venue.setPrice(price);
 
             if (!imageFile.isEmpty()) {
+
                 String fileName = imageFile.getOriginalFilename().replace(" ", "_");
                 String uploadDir = System.getProperty("user.dir") + "/uploads/";
+
+                File dir = new File(uploadDir);
+                if (!dir.exists()) {
+                    dir.mkdirs();
+                }
 
                 imageFile.transferTo(new File(uploadDir + fileName));
                 venue.setImageName(fileName);
@@ -57,7 +70,13 @@ public class VenueController {
     // DELETE
     @GetMapping("/delete/{id}")
     public String deleteVenue(@PathVariable Long id) {
-        venueService.deleteVenue(id);
+
+        try {
+            venueService.deleteVenue(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         return "redirect:/admin/venues";
     }
 
@@ -65,8 +84,13 @@ public class VenueController {
     @GetMapping("/edit/{id}")
     public String editVenue(@PathVariable Long id, Model model) {
 
-        model.addAttribute("venue", venueService.getVenueById(id));
-        model.addAttribute("venues", venueService.getAllVenues());
+        try {
+            model.addAttribute("venue", venueService.getVenueById(id));
+            model.addAttribute("venues", venueService.getAllVenues());
+        } catch (Exception e) {
+            e.printStackTrace();
+            model.addAttribute("error", "Failed to load venue");
+        }
 
         return "admin/manage-venues";
     }
@@ -86,8 +110,14 @@ public class VenueController {
                 existing.setPrice(venue.getPrice());
 
                 if (!file.isEmpty()) {
+
                     String fileName = file.getOriginalFilename();
                     String uploadDir = System.getProperty("user.dir") + "/uploads/";
+
+                    File dir = new File(uploadDir);
+                    if (!dir.exists()) {
+                        dir.mkdirs();
+                    }
 
                     file.transferTo(new File(uploadDir + fileName));
                     existing.setImageName(fileName);

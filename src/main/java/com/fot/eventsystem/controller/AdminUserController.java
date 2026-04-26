@@ -16,25 +16,51 @@ public class AdminUserController {
 
     @GetMapping
     public String showUsers(Model model) {
-        model.addAttribute("users", userService.getAllUsers());
+
+        try {
+            model.addAttribute("users", userService.getAllUsers());
+        } catch (Exception e) {
+            e.printStackTrace();
+            model.addAttribute("error", "Failed to load users");
+        }
+
         return "admin/manage-users";
     }
 
     @GetMapping("/delete/{id}")
     public String deleteUser(@PathVariable int id) {
-        userService.deleteUser(id);
+
+        try {
+            userService.deleteUser(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         return "redirect:/admin/users";
     }
 
     @GetMapping("/edit/{id}")
     public String editUser(@PathVariable int id, Model model) {
-        model.addAttribute("user", userService.getUserById(id));
+
+        try {
+            model.addAttribute("user", userService.getUserById(id));
+        } catch (Exception e) {
+            e.printStackTrace();
+            model.addAttribute("error", "User not found");
+        }
+
         return "admin/edit-user";
     }
 
     @PostMapping("/update")
     public String updateUser(User user) {
-        userService.saveUser(user);
+
+        try {
+            userService.saveUser(user);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         return "redirect:/admin/users";
     }
 }
