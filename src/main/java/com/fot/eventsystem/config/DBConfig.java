@@ -18,7 +18,7 @@ public class DBConfig {
             ds.setJdbcUrl("jdbc:mysql://localhost:3306/fot_event_system");
             ds.setUsername("root");
             ds.setPassword("801@Vihanga");
-           // ds.setPassword("1234");
+           // ds.setPassword("12345");
             ds.setDriverClassName("com.mysql.cj.jdbc.Driver");
 
             return ds;
