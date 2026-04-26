@@ -42,8 +42,8 @@
 
             <div class="venue-card" th:each="venue : ${venues}">
 
-                <img th:src="@{'/images/' + ${venue.imageName}}">
 
+                <img th:src="@{'/uploads/' + ${venue.imageName}}">
                 <h3 th:text="${venue.name}"></h3>
 
                 <p>Capacity: <span th:text="${venue.capacity}"></span></p>

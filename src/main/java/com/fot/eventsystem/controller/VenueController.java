@@ -40,8 +40,10 @@ public class VenueController {
             if (!imageFile.isEmpty()) {
                 String fileName = imageFile.getOriginalFilename().replace(" ", "_");
 
+                /*
                 String uploadDir = System.getProperty("user.dir")
-                        + "/src/main/resources/static/images/";
+                        + "/src/main/resources/static/images/";*/
+                String uploadDir = System.getProperty("user.dir") + "/uploads/";
 
                 imageFile.transferTo(new File(uploadDir + fileName));
 

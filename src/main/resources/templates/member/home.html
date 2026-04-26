@@ -60,7 +60,12 @@
 
                 <input type="text" name="eventName" placeholder="Event Name" required>
 
-                <input type="date" name="eventDate" required>
+                <input type="date" name="eventDate" id="eventDate" required>
+                <script>
+                    // set today's date as minimum
+                    let today = new Date().toISOString().split("T")[0];
+                    document.getElementById("eventDate").setAttribute("min", today);
+                </script>
 
                 <label>Event Start :</label>
                 <input type="time" name="eventTimeStart" id="startTime" onchange="calculatePrice()"required>

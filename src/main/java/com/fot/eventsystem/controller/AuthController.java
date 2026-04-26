@@ -52,16 +52,23 @@ public class AuthController {
             @RequestParam(required = false) String orgname
     ) {
 
+        // 🔥 PASSWORD CHECK
         if (!pwd.equals(confirmPwd)) {
             return "redirect:/?passwordError=true";
         }
 
+        // 🔥 EMAIL EXISTS CHECK (IMPORTANT)
+        User existingUser = userRepository.findByEmail(email);
+
+        if (existingUser != null) {
+            return "redirect:/?exists=true";
+        }
+
+        // 🔥 SAVE NEW USER
         User user = new User();
         user.setEmail(email);
         user.setPassword(pwd);
-
         user.setUsertype(usertype);
-
         user.setRegisterno(registerno);
         user.setPhoneno(phoneno);
         user.setOrgname(orgname);
