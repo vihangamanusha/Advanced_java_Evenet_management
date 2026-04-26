@@ -1,10 +1,9 @@
 package com.fot.eventsystem.controller;
 
 import com.fot.eventsystem.model.User;
-import com.fot.eventsystem.repository.UserRepository;
+import com.fot.eventsystem.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import jakarta.servlet.http.HttpSession;
 
@@ -12,20 +11,18 @@ import jakarta.servlet.http.HttpSession;
 public class AuthController {
 
     @Autowired
-    private UserRepository userRepository;
+    private UserService userService;
 
     @PostMapping("/login")
     public String login(@RequestParam String email,
                         @RequestParam String password,
                         HttpSession session) {
 
-        User user = userRepository.findByEmailAndPassword(email, password);
+        User user = userService.login(email, password);
 
         if (user != null) {
 
-
             session.setAttribute("loggedUser", user);
-
 
             if ("ADMIN".equalsIgnoreCase(user.getUsertype())) {
                 return "redirect:/admin/dashboard";
@@ -41,6 +38,7 @@ public class AuthController {
             return "redirect:/?loginError=true";
         }
     }
+
     @PostMapping("/signup")
     public String signup(
             @RequestParam String email,
@@ -52,19 +50,14 @@ public class AuthController {
             @RequestParam(required = false) String orgname
     ) {
 
-
         if (!pwd.equals(confirmPwd)) {
             return "redirect:/?passwordError=true";
         }
 
-
-        User existingUser = userRepository.findByEmail(email);
-
-        if (existingUser != null) {
+        if (userService.findByEmail(email) != null) {
             return "redirect:/?exists=true";
         }
 
-        //SAVE NEW USER
         User user = new User();
         user.setEmail(email);
         user.setPassword(pwd);
@@ -73,7 +66,7 @@ public class AuthController {
         user.setPhoneno(phoneno);
         user.setOrgname(orgname);
 
-        userRepository.save(user);
+        userService.saveUser(user);
 
         return "redirect:/?registered=true";
     }
