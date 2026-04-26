@@ -1,7 +1,7 @@
 package com.fot.eventsystem.controller;
 
 import com.fot.eventsystem.model.Venues;
-import com.fot.eventsystem.repository.VenueRepository;
+import com.fot.eventsystem.service.VenueService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,19 +9,18 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
-import java.io.IOException;
 
 @Controller
 @RequestMapping("/admin/venues")
 public class VenueController {
 
     @Autowired
-    private VenueRepository venueRepository;
+    private VenueService venueService;
 
     // SHOW ALL
     @GetMapping
     public String showVenues(Model model) {
-        model.addAttribute("venues", venueRepository.findAll());
+        model.addAttribute("venues", venueService.getAllVenues());
         return "admin/manage-venues";
     }
 
@@ -31,6 +30,7 @@ public class VenueController {
                             @RequestParam int capacity,
                             @RequestParam double price,
                             @RequestParam MultipartFile imageFile) {
+
         try {
             Venues venue = new Venues();
             venue.setName(name);
@@ -39,18 +39,13 @@ public class VenueController {
 
             if (!imageFile.isEmpty()) {
                 String fileName = imageFile.getOriginalFilename().replace(" ", "_");
-
-                /*
-                String uploadDir = System.getProperty("user.dir")
-                        + "/src/main/resources/static/images/";*/
                 String uploadDir = System.getProperty("user.dir") + "/uploads/";
 
                 imageFile.transferTo(new File(uploadDir + fileName));
-
                 venue.setImageName(fileName);
             }
 
-            venueRepository.save(venue);
+            venueService.saveVenue(venue);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -62,7 +57,7 @@ public class VenueController {
     // DELETE
     @GetMapping("/delete/{id}")
     public String deleteVenue(@PathVariable Long id) {
-        venueRepository.deleteById(id);
+        venueService.deleteVenue(id);
         return "redirect:/admin/venues";
     }
 
@@ -70,20 +65,19 @@ public class VenueController {
     @GetMapping("/edit/{id}")
     public String editVenue(@PathVariable Long id, Model model) {
 
-        Venues venue = venueRepository.findById(id).orElse(null);
-
-        model.addAttribute("venue", venue);
-        model.addAttribute("venues", venueRepository.findAll());
+        model.addAttribute("venue", venueService.getVenueById(id));
+        model.addAttribute("venues", venueService.getAllVenues());
 
         return "admin/manage-venues";
     }
 
+    // UPDATE
     @PostMapping("/update")
     public String updateVenue(@ModelAttribute Venues venue,
                               @RequestParam("imageFile") MultipartFile file) {
 
         try {
-            Venues existing = venueRepository.findById(venue.getId()).orElse(null);
+            Venues existing = venueService.getVenueById(venue.getId());
 
             if (existing != null) {
 
@@ -93,11 +87,13 @@ public class VenueController {
 
                 if (!file.isEmpty()) {
                     String fileName = file.getOriginalFilename();
-                    file.transferTo(new File("src/main/resources/static/images/" + fileName));
+                    String uploadDir = System.getProperty("user.dir") + "/uploads/";
+
+                    file.transferTo(new File(uploadDir + fileName));
                     existing.setImageName(fileName);
                 }
 
-                venueRepository.save(existing);
+                venueService.saveVenue(existing);
             }
 
         } catch (Exception e) {
