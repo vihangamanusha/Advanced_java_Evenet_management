@@ -13,7 +13,7 @@
 <!-- Header -->
 <div th:replace="fragments/header :: header"></div>
 
-<!-- ✅ Slideshow START -->
+<!-- Slideshow START -->
 <div class="slideshow-container">
     <div class="mySlides fade">
         <img th:src="@{/images/image2.png}" style="width:100%">
@@ -36,9 +36,7 @@
     <span class="dot" onclick="currentSlide(2)"></span>
     <span class="dot" onclick="currentSlide(3)"></span>
 </div>
-<!-- ✅ Slideshow END -->
 
-<!-- ✅ Upcoming Events -->
 <section class="upcoming-events">
 
     <h1>UPCOMING EVENTS</h1>
@@ -86,10 +84,10 @@
     </div>
 
 </section>
-<!-- Footer -->
+
 <div th:replace="fragments/footer :: footer"></div>
 
-<!-- Slideshow JS -->
+
 <script th:src="@{/js/slideshow.js}"></script>
 <script th:src="@{/js/login.js}"></script>
 
@@ -102,7 +100,7 @@
 
     document.addEventListener("DOMContentLoaded", function () {
 
-        // LOGIN ERROR → open login popup
+        // LOGIN ERROR open login popup
         if (loginError) {
             openLogin();
 
@@ -111,12 +109,12 @@
             }, 100);
         }
 
-        // SIGNUP ERROR → open signup popup
+        // SIGNUP ERROR open signup popup
         if (exists) {
             openSignup();
         }
 
-        // SIGNUP SUCCESS → open signup popup
+        // SIGNUP SUCCESS open signup popup
         if (registered) {
             openSignup();
         }

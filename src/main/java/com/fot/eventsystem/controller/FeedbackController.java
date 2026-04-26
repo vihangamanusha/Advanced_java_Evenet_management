@@ -13,20 +13,20 @@ public class FeedbackController {
     @Autowired
     private FeedbackRepository feedbackRepository;
 
-    // 🔹 Show contact page
+    // Show contact page
     @GetMapping("/contact")
     public String contactPage() {
         return "contact";
     }
 
-    // 🔹 Save feedback
+    // Save feedback
     @PostMapping("/contact/save")
     public String saveFeedback(Feedback feedback) {
         feedbackRepository.save(feedback);
         return "redirect:/contact?success";
     }
 
-    // 🔹 Admin view feedback
+    // Admin view feedback
     @GetMapping("/admin/feedback")
     public String viewFeedback(Model model) {
         model.addAttribute("feedbacks", feedbackRepository.findAll());

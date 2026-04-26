@@ -8,15 +8,15 @@
 </head>
 <body>
 
-<!-- Header -->
+
 <div th:replace="fragments/header :: header"></div>
 
 <section class="contact-section">
 
-    <!-- Background overlay -->
+
     <div class="overlay">
 
-        <!-- TITLE -->
+
         <h1>CONTACT US</h1>
         <p class="contact-desc">
             Get in touch with the Faculty of Technology Event Management Team
@@ -24,7 +24,7 @@
 
         <div class="contact-container">
 
-            <!-- LEFT SIDE (INFO) -->
+
             <div class="contact-info">
                 <h2>Contact Information</h2>
                 <p><b>📍 Address:</b> Faculty of Technology, University of Ruhuna</p>
@@ -32,14 +32,14 @@
                 <p><b>📧 Email:</b> eventmanagement@fot.ruh.ac.lk</p>
                 <p><b>🕒 Hours:</b> 8:00 AM - 5:00 PM</p>
 
-                <!-- MAP -->
+
                 <iframe
                         src="https://www.google.com/maps?q=Faculty%20of%20Technology%20Ruhuna&output=embed"
                         width="100%" height="200" style="border:0;">
                 </iframe>
             </div>
 
-            <!-- RIGHT SIDE (FORM) -->
+
             <div class="contact-form">
 
                 <form action="/contact/save" method="post">
@@ -51,7 +51,7 @@
 
                     <input type="text" name="phone" placeholder="Phone Number"
                            pattern="[0-9]{10}" title="Phone number must be 10 digits">
-                    <!-- Message Type -->
+
                     <select name="type">
                         <option>Inquiry</option>
                         <option>Complaint</option>
@@ -62,14 +62,14 @@
                     <!-- Subject -->
                     <input type="text" name="subject" placeholder="Subject (Optional)">
 
-                    <!-- Message -->
+
                     <textarea name="message" placeholder="Your Message" required></textarea>
 
                     <button type="submit">Send Message</button>
 
                 </form>
 
-                <!-- Success Message -->
+
                 <p th:if="${param.success}" class="success-msg">
                     Message sent successfully!
                 </p>
@@ -82,7 +82,7 @@
 
 </section>
 
-<!-- Footer -->
+
 <div th:replace="fragments/footer :: footer"></div>
 
 </body>

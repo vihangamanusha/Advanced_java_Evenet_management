@@ -41,8 +41,8 @@ function validateMember() {
     let error = document.getElementById("memberError");
 
     if (pwd !== confirmPwd) {
-        error.innerText = "❌ Passwords do not match!";
-        return false; // ❗ this is what prevents account creation
+        error.innerText = " Passwords do not match!";
+        return false; // this is what prevents account creation
     }
 
     error.innerText = "";
@@ -55,8 +55,8 @@ function validatePublic() {
     let error = document.getElementById("publicError");
 
     if (pwd !== confirmPwd) {
-        error.innerText = "❌ Passwords do not match!";
-        return false; // ❗ this is what prevents account creation
+        error.innerText = " Passwords do not match!";
+        return false; //  this is what prevents account creation
     }
 
     error.innerText = "";

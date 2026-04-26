@@ -34,7 +34,7 @@ public class AdminNewsController {
             @RequestParam("imageFile") MultipartFile file
     ) throws IOException {
 
-        // 🔥 safer upload path
+
         String uploadDir = System.getProperty("user.dir") + "/uploads/";
 
         File dir = new File(uploadDir);

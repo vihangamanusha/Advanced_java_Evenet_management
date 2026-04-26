@@ -14,21 +14,21 @@ public class AdminUserController {
     @Autowired
     private UserRepository userRepository;
 
-    // 🔹 Show all users
+    //Show all users
     @GetMapping
     public String showUsers(Model model) {
         model.addAttribute("users", userRepository.findAll());
         return "admin/manage-users";
     }
 
-    // 🔹 Delete user
+    // Delete user
     @GetMapping("/delete/{id}")
     public String deleteUser(@PathVariable int id) {
         userRepository.deleteById(id);
         return "redirect:/admin/users";
     }
 
-    // 🔹 Load edit page
+    //Load edit page
     @GetMapping("/edit/{id}")
     public String editUser(@PathVariable int id, Model model) {
         User user = userRepository.findById(id).orElse(null);
@@ -36,7 +36,7 @@ public class AdminUserController {
         return "admin/edit-user";
     }
 
-    // 🔹 Update user
+    //Update user
     @PostMapping("/update")
     public String updateUser(User user) {
         userRepository.save(user);

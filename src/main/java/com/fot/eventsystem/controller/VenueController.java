@@ -66,7 +66,7 @@ public class VenueController {
         return "redirect:/admin/venues";
     }
 
-    // ✅ EDIT PAGE
+    // EDIT PAGE
     @GetMapping("/edit/{id}")
     public String editVenue(@PathVariable Long id, Model model) {
 
