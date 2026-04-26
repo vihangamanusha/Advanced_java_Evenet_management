@@ -1,7 +1,7 @@
 package com.fot.eventsystem.controller;
 
 import com.fot.eventsystem.model.Feedback;
-import com.fot.eventsystem.repository.FeedbackRepository;
+import com.fot.eventsystem.service.FeedbackService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 public class FeedbackController {
 
     @Autowired
-    private FeedbackRepository feedbackRepository;
+    private FeedbackService feedbackService;
 
     // Show contact page
     @GetMapping("/contact")
@@ -22,14 +22,14 @@ public class FeedbackController {
     // Save feedback
     @PostMapping("/contact/save")
     public String saveFeedback(Feedback feedback) {
-        feedbackRepository.save(feedback);
+        feedbackService.saveFeedback(feedback);
         return "redirect:/contact?success";
     }
 
     // Admin view feedback
     @GetMapping("/admin/feedback")
     public String viewFeedback(Model model) {
-        model.addAttribute("feedbacks", feedbackRepository.findAll());
+        model.addAttribute("feedbacks", feedbackService.getAllFeedback());
         return "admin/feedback-list";
     }
 }
