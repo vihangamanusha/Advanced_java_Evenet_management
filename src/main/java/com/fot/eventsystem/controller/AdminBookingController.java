@@ -37,6 +37,7 @@ public class AdminBookingController {
             if (booking != null) {
                 booking.setStatus("APPROVED");
                 bookingRepository.save(booking);
+                
             }
 
         } catch (Exception e) {
