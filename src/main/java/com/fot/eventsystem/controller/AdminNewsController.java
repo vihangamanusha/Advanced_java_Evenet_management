@@ -19,14 +19,14 @@ public class AdminNewsController {
     @Autowired
     private NewsRepository newsRepository;
 
-    // ✅ SHOW PAGE + LOAD DATA
+    //  SHOW PAGE + LOAD DATA
     @GetMapping
     public String showNewsPage(Model model) {
         model.addAttribute("newsList", newsRepository.findAll());
         return "admin/manage-news";
     }
 
-    // ✅ SAVE NEWS
+    // SAVE NEWS
     @PostMapping("/save")
     public String saveNews(
             @RequestParam String title,
@@ -34,7 +34,7 @@ public class AdminNewsController {
             @RequestParam("imageFile") MultipartFile file
     ) throws IOException {
 
-        // 🔥 safer upload path
+
         String uploadDir = System.getProperty("user.dir") + "/uploads/";
 
         File dir = new File(uploadDir);

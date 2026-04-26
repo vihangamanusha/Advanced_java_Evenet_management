@@ -77,7 +77,7 @@ public class AdminController {
             Map<String, Object> event = new HashMap<>();
 
             event.put("title", b.getEventName());
-            event.put("start", b.getEventDate()); // must be YYYY-MM-DD
+            event.put("start", b.getEventDate()); //YYYY-MM-DD
 
             events.add(event);
         }

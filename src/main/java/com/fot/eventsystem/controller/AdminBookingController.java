@@ -13,14 +13,14 @@ public class AdminBookingController {
     @Autowired
     private BookingRepository bookingRepository;
 
-    // 🔹 SHOW ALL BOOKINGS
+    // show all bookings
     @GetMapping("/admin/request")
     public String requestPage(Model model) {
         model.addAttribute("bookings", bookingRepository.findAll());
         return "admin/request";
     }
 
-    // 🔹 APPROVE
+    // approve
     @PostMapping("/admin/approve/{id}")
     public String approve(@PathVariable int id) {
 
@@ -34,7 +34,7 @@ public class AdminBookingController {
         return "redirect:/admin/booking-request";
     }
 
-    // 🔹 REJECT
+    //rejct
     @PostMapping("/admin/reject/{id}")
     public String reject(@PathVariable int id) {
 

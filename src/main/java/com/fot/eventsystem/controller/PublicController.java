@@ -19,7 +19,7 @@ public class PublicController {
 
         User user = (User) session.getAttribute("loggedUser");
 
-        // if not logged in → go home
+        // if not logged in go home
         if (user == null) {
             return "redirect:/";
         }

@@ -1,28 +1,28 @@
 <div th:fragment="header">
 
-    <!-- MAIN HEADER -->
+
     <div class="main-header">
 
-        <!-- Left Logo -->
+
         <div class="logo-left">
             <img src="/images/logo2.png" alt="Logo">
         </div>
 
-        <!-- Title -->
+
         <div class="title">
             <h1>Event Management System</h1>
             <h2>Faculty of Technology</h2>
             <h3>University of Ruhuna</h3>
         </div>
 
-        <!-- Right Logo -->
+
         <div class="logo-right">
             <img src="/images/logo1.png" alt="Logo">
         </div>
 
     </div>
 
-    <!-- NAVIGATION -->
+
     <nav class="navbar">
         <a href="/">HOME</a>
         <a th:href="@{/about}">ABOUT US</a>
@@ -87,8 +87,8 @@
 
                     <input type="text" name="registerno" placeholder="Registration Number" required>
                     <input type="email" name="email" placeholder="Email" required>
-                    <input type="password" name="pwd" placeholder="Password" required>
-                    <input type="password" name="confirmPwd" placeholder="Confirm Password" required>
+                    <input type="password" id="memberPwd" name="pwd" placeholder="Password" required>
+                    <input type="password" id="memberConfirmPwd" name="confirmPwd" placeholder="Confirm Password" required>
                     <button type="submit">REGISTER</button>
                     <!-- Error message -->
                     <p id="memberError" style="color:red;"></p>
@@ -113,8 +113,8 @@
                     <input type="text" name="phoneno" placeholder="Phone Number" required>
                     <input type="email" name="email" placeholder="Email" required>
                     <input type="text" name="orgname" placeholder="Organization Name" required>
-                    <input type="password" name="pwd" placeholder="Password" required>
-                    <input type="password" name="confirmPwd" placeholder="Confirm Password" required>
+                    <input type="password" id="publicPwd" name="pwd" placeholder="Password" required>
+                    <input type="password" id="publicConfirmPwd" name="confirmPwd" placeholder="Confirm Password" required>
                     <button type="submit">REGISTER</button>
                     <!-- Password mismatch error (JS) -->
                     <p id="publicError" style="color:red;"></p>

@@ -24,7 +24,7 @@ public class MemberController {
 
         model.addAttribute("user", user);
 
-        // 🔥 ADD THIS (IMPORTANT)
+
         model.addAttribute("venues", venueRepository.findAll());
 
         return "member/home";

@@ -8,29 +8,29 @@
 </head>
 <body style="background-color: #e1e0e0; ">
 
-<!-- MAIN HEADER -->
+
 <div class="main-header">
 
-  <!-- Left Logo -->
+
   <div class="logo-left">
     <img src="/images/logo2.png" alt="Logo">
   </div>
 
-  <!-- Title -->
+
   <div class="title">
     <h1>Event Management System</h1>
     <h2>Faculty of Technology</h2>
     <h3>University of Ruhuna</h3>
   </div>
 
-  <!-- Right Logo -->
+
   <div class="logo-right">
     <img src="/images/logo1.png" alt="Logo">
   </div>
 
 </div>
 
-<!-- NAVIGATION -->
+
 <nav class="navbar">
   <a th:href="@{/}">HOME</a>
   <a th:href="@{/about}">ABOUT US</a>
@@ -55,12 +55,17 @@
 
   <form action="/book" method="post" enctype="multipart/form-data" class="booking-form">
 
-    <!-- LEFT SIDE -->
+
     <div class="left-section">
 
       <input type="text" name="eventName" placeholder="Event Name" required>
 
-      <input type="date" name="eventDate" required>
+      <input type="date" name="eventDate" id="eventDate" required>
+      <script>
+        // set today's date as minimum
+        let today = new Date().toISOString().split("T")[0];
+        document.getElementById("eventDate").setAttribute("min", today);
+      </script>
 
       <label>Event Start :</label>
       <input type="time" name="eventTimeStart" id="startTime" onchange="calculatePrice()"required>
@@ -84,13 +89,13 @@
 
       <textarea name="description" placeholder="Event Description" rows="4" required></textarea>
 
-      <!-- PRICE -->
+
       <input type="text" id="price" name="price" placeholder="Total Price" readonly>
 
 
     </div>
 
-    <!-- RIGHT SIDE -->
+
     <div class="right-section">
 
 
@@ -99,13 +104,13 @@
 
           let select = document.getElementById("venue");
 
-          // 🔥 get price correctly
+          // get price correctly
           let rate = select.options[select.selectedIndex].getAttribute("data-price");
 
           let start = document.getElementById("startTime").value;
           let end = document.getElementById("endTime").value;
 
-          // ❗ convert rate to number
+          //  convert rate to number
           if (!start || !end || !rate) return;
 
           let startTime = new Date("1970-01-01T" + start + ":00");
@@ -118,17 +123,17 @@
             return;
           }
 
-          // 🔥 VERY IMPORTANT (convert string to number)
+          // convert string to number
           let price = hours * parseFloat(rate);
 
           document.getElementById("price").value = price;
         }
       </script>
-      <!-- IMAGE -->
+
       <label>Upload Event Image :</label>
       <input type="file" name="eventImage" accept="image/*">
 
-      <!-- BANK DETAILS -->
+
       <div class="bank-box">
         <h3>Bank Details for Payment</h3>
         <p>Bank:People's Bank </p>
@@ -138,7 +143,7 @@
         <p style="color:red;">Standard Price Applied ✅</p>
       </div>
 
-      <!-- BANK SLIP -->
+
       <label>Upload Bank Slip</label>
       <input type="file" name="bankSlip" accept="image/*,application/pdf" required>
 
@@ -167,7 +172,7 @@
 
 
 
-<!-- Footer -->
+
 <div th:replace="fragments/footer :: footer"></div>
 </body>
 </html>
