@@ -1,5 +1,6 @@
 package com.fot.eventsystem.controller;
 
+import com.fot.eventsystem.factory.BookingFactory;
 import com.fot.eventsystem.model.Booking;
 import com.fot.eventsystem.model.User;
 import com.fot.eventsystem.service.BookingService;
@@ -44,13 +45,14 @@ public class BookingController {
             price = "0";
         }
 
+        // upload folder
         String uploadDir = System.getProperty("user.dir") + "/uploads/";
         File dir = new File(uploadDir);
         if (!dir.exists()) {
             dir.mkdirs();
         }
 
-        // IMAGE
+        // EVENT IMAGE
         String eventImageName = null;
         if (eventImage != null && !eventImage.isEmpty()) {
             eventImageName = System.currentTimeMillis() + "_" + eventImage.getOriginalFilename();
@@ -64,21 +66,22 @@ public class BookingController {
             bankSlip.transferTo(new File(uploadDir + bankSlipName));
         }
 
-        // CREATE MODEL
-        Booking booking = new Booking();
-        booking.setEventName(eventName);
-        booking.setEventDate(eventDate);
-        booking.setEventTimeStart(eventTimeStart);
-        booking.setEventTimeend(eventTimeend);
-        booking.setPeopleCount(peopleCount);
-        booking.setVenue(venue);
-        booking.setDescription(description);
-        booking.setPrice(price);
-        booking.setEventImage(eventImageName);
-        booking.setBankSlip(bankSlipName);
-        booking.setUserEmail(user.getEmail());
+        // USING FACTORY HERE
+        Booking booking = BookingFactory.createBooking(
+                eventName,
+                eventDate,
+                eventTimeStart,
+                eventTimeend,
+                peopleCount,
+                venue,
+                description,
+                price,
+                eventImageName,
+                bankSlipName,
+                user.getEmail()
+        );
 
-        // SAVE USING SERVICE
+        // SAVE
         bookingService.saveBooking(booking);
 
         return "redirect:/member/home?success=true";
