@@ -5,8 +5,6 @@ import com.fot.eventsystem.repository.FeedbackRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class FeedbackService {
 
@@ -18,10 +16,8 @@ public class FeedbackService {
         feedbackRepository.save(feedback);
     }
 
-    // Get all feedback
-    public List<Feedback> getAllFeedback() {
+    // Get all feedbacks
+    public Iterable<Feedback> getAllFeedbacks() {
         return feedbackRepository.findAll();
     }
-
-
 }

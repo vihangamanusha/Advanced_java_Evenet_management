@@ -19,26 +19,16 @@ public class FeedbackController {
         return "contact";
     }
 
-    // Save feedback
+    // Save feedback with error handling
     @PostMapping("/contact/save")
     public String saveFeedback(Feedback feedback) {
 
         try {
-
-            // basic validation (prevents blank submit issues)
-            if (feedback.getName() == null || feedback.getName().trim().isEmpty() ||
-                    feedback.getEmail() == null || feedback.getEmail().trim().isEmpty() ||
-                    feedback.getMessage() == null || feedback.getMessage().trim().isEmpty()) {
-
-                return "redirect:/contact?error=empty";
-            }
-
             feedbackService.saveFeedback(feedback);
             return "redirect:/contact?success";
 
         } catch (Exception e) {
-            e.printStackTrace();
-            return "redirect:/contact?error=true";
+            return "redirect:/contact?error";
         }
     }
 
@@ -46,13 +36,7 @@ public class FeedbackController {
     @GetMapping("/admin/feedback")
     public String viewFeedback(Model model) {
 
-        try {
-            model.addAttribute("feedbacks", feedbackService.getAllFeedback());
-        } catch (Exception e) {
-            e.printStackTrace();
-            model.addAttribute("error", "Unable to load feedback");
-        }
-
+        model.addAttribute("feedbacks", feedbackService.getAllFeedbacks());
         return "admin/feedback-list";
     }
 }
