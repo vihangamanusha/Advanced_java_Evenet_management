@@ -1,8 +1,6 @@
 package com.fot.eventsystem.config;
 
-import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
-import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -10,14 +8,23 @@ import javax.sql.DataSource;
 
 @Configuration
 public class DBConfig {
+
     @Bean
     public DataSource dataSource() {
-        HikariDataSource dataSource = new HikariDataSource();
-        dataSource.setJdbcUrl("jdbc:mysql://localhost:3306/fot_event_system");
-        dataSource.setUsername("root");
-        dataSource.setPassword("801@Vihanga");
-        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        return dataSource;
-    }
 
+        try {
+            HikariDataSource ds = new HikariDataSource();
+
+            ds.setJdbcUrl("jdbc:mysql://localhost:3306/fot_event_system");
+            ds.setUsername("root");
+            ds.setPassword("801@Vihanga");
+            ds.setDriverClassName("com.mysql.cj.jdbc.Driver");
+
+            return ds;
+
+        } catch (Exception e) {
+            System.out.println("Database Connection Error: " + e.getMessage());
+            throw e;   // better than returning null
+        }
+    }
 }
